@@ -1,0 +1,116 @@
+<div class="row shadow">
+  <div class="col-sm-4 p-0">
+    <div class="card">
+      <div class="card-img-wrapper">
+        <img *ngIf="drumKit.image" class="card-img-top" src="assets/images/drums/{{drumKit.image}}">
+        <img *ngIf="!drumKit.image" class="card-img-top" src="assets/images/drums/drumKit-default.png">
+      </div>
+      <div class="card-body">
+        <h1 class="mb-0">{{drumKit.brand}} {{drumKit.name}}</h1>
+        <h2 class="mt-2">Made in: {{drumKit.countryOfOrigin}}</h2>
+        <h2>Year produced: {{drumKit.year}}</h2>
+        <hr class="mt-0 mb-2">
+        <h3 class="mb-0">Value: ${{drumKit.value}}</h3>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-primary">Like</button>
+          <button class="btn btn-success">Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8 p-0">
+    <div class="tab-panel p-3">
+      <tabset class="member-tabset">
+        <tab heading="Overview">
+          <h1>Overview</h1>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Brand</strong>
+                <p>{{drumKit.brand}}</p>
+              </div>
+              <div class="heading">
+                <strong>Name</strong>
+                <p>{{drumKit.name}}</p><span *ngIf="!drumKit.isElectric"> (Electric)</span>
+              </div>
+              <div class="heading">
+                <strong>Model</strong>
+                <p>{{drumKit.model}}</p>
+              </div>
+              <div class="heading" *ngIf="drumKit.kitOrSingle == 1">
+                <strong>Total Pieces</strong>
+                <p>{{drumKit.numPieces}}</p>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Year</strong>
+                <p>{{drumKit.year}}</p>
+              </div>
+              <div class="heading">
+                <strong>Made in</strong>
+                <p>{{drumKit.countryOfOrigin}}</p>
+              </div>
+              <div class="heading">
+                <strong>Value</strong>
+                <p>{{drumKit.value}}</p>
+              </div>
+              <div class="heading" *ngIf="drumKit.kitOrSingle == 1">
+                <strong>Number of Drums and Cymbals</strong>
+                <p>Drums: {{drumKit.numDrums}}, Cymbals: {{drumKit.numCymbals}}</p>
+              </div>
+
+
+            </div>
+            <div class="col-sm-12">
+              <div class="heading">
+                <strong>Description</strong>
+                <p>{{drumKit.description}}</p>
+              </div>
+            </div>
+          </div>
+        </tab>
+
+        <tab heading="Enhancements and Accessories">
+          <div class="row">
+          <div class="col-sm-6">
+            <div class="heading">
+              <strong>Has aftermarket skin(s)?</strong>
+              <p *ngIf="!drumKit.skinsAreAftermarket">Yes - {{drumKit.brandOfSkins}} {{drumKit.nameOfSkins}}</p>
+              <p *ngIf="drumKit.skinsAreAftermarket">No, has original skin(s)</p>
+            </div>
+            <div class="heading" *ngIf="drumKit.kitOrSingle == 1">
+              <strong>Cymbals are aftermerket?</strong>
+              <p *ngIf="!drumKit.cymbalsAreAftermarket"> Yes - {{drumKit.brandOfCymbals}} {{drumKit.nameOfCymbals}}</p>
+              <p *ngIf="drumKit.cymbalsAreAftermarket"> No, has original cymbal(s)</p>
+            </div>
+            </div>
+            <div class="col-sm-6">
+            <div class="heading" *ngIf="drumKit.kitOrSingle == 1">
+              <strong>Has throne?</strong>
+              <p *ngIf="!drumKit.hasThrone"> Yes - {{drumKit.brandOfThrone}} {{drumKit.nameOfThrone}}</p>
+              <p *ngIf="drumKit.hasThrone"> No throne</p>
+            </div>
+            <div class="heading" *ngIf="drumKit.kitOrSingle == 1">
+              <strong>Has bass pillow?</strong>
+              <p *ngIf="!drumKit.hasBassPillow"> Yes - {{drumKit.brandOfBassPillow}} {{drumKit.nameOfBassPillow}}</p>
+              <p *ngIf="drumKit.hasBassPillow"> No bass pillow</p>
+            </div>
+          </div>
+        </div>
+        </tab>
+
+        <tab heading="Photos">
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+        </tab>
+        <tab heading="Contact">
+          <h1>Contact Detail</h1>
+          This should be restricted area and only registered user should be able to see seller contact details
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

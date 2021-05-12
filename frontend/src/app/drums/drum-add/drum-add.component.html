@@ -1,0 +1,224 @@
+<div class="row mb-5">
+  <div class="col-8 shadow-lg p-0 bg-white">
+    <div class="card">
+      <div class="card-header">
+        <h3>Add New Drum/Kit</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="drumAddForm" (ngSubmit)='onSubmit()'>
+
+          <div class="tab-panel">
+            <tabset class="member-tabset" #formTabs>
+
+              <tab heading="Basic Info" formGroupName="basicInfo">
+                <div class="form-group col-12">
+                  <p>Single drum or kit?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="kitOrSingle">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button"name="kitOrSingle">Kit</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button"name="kitOrSingle">Single</label>
+                  </div>
+                  <div class="error-block" *ngIf="kitOrSingle.invalid && nextClicked">
+                    Please select kit or single drum
+                  </div>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="brand">Brand</label>
+                  <input type="text" class="form-control" formControlName="brand" [(ngModel)]="drumKitView.brand"><!-- [ngClass]="{'error-block' : !brand.valid && (brand.touched || nextClicked)}" -->
+                  <span *ngIf="!brand.valid && (brand.touched || nextClicked)" class="error-block">
+                    <span *ngIf="brand.errors.required" class="error-block">Please designate the Brand</span>
+                    <span *ngIf="brand.errors.minlength">Brand must be at least 2 char long</span>
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" formControlName="name" [(ngModel)]="drumKitView.name">
+                  <span *ngIf="!name.valid && (name.touched || nextClicked)" class="error-block">
+                    <span *ngIf="name.errors.required" class="error-block">Please provide name</span>
+                    <span *ngIf="name.errors.minlength">Name must be at least 2 char long</span>
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="model">Model</label>
+                  <input type="text" class="form-control" formControlName="model">
+                </div>
+
+                <div class="form-group col-12">
+                  <p>Electric or acoustic?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="isElectric">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="isElectric">Acoustic</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="isElectric">Electric</label>
+                  </div>
+                </div>
+
+                <div class="form-group col-12" *ngIf="(kitOrSingle.value == 1)">
+                  <label for="numPieces">Number of peices</label>
+                  <input type="text" class="form-control" formControlName="numPieces">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="description">Description</label>
+                  <input type="text" class="form-control" formControlName="description">
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block"
+                  (click)="selectTab(1, basicInfo.valid)">Next</button>
+              </tab>
+
+              <tab heading="Desirability" formGroupName="desirability">
+                <div class="form-group col-12">
+                  <label for="year">Year</label>
+                  <input type="text" placeholder="Datepicker" class="form-control" formControlName="year" bsDatepicker [(ngModel)]="drumKitView.year" [bsConfig]="{containerClass: 'theme-dark-blue', isAnimated: true, dateInputFormat: 'YYYY', minMode: 'year'}">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="countryOfOrigin">Country of origin</label>
+                  <select class="form-control" formControlName="countryOfOrigin" [(ngModel)]="drumKitView.countryOfOrigin">
+                    <option value=''>--Select Country--</option>
+                    <option *ngFor="let country of countryList" value={{country.name}}>{{country.name}}</option>
+                  </select>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="value">Value</label>
+                  <input type="text" class="form-control" formControlName="value" [(ngModel)]="drumKitView.value">
+                </div>
+
+                <div class="form-group col-12" *ngIf="kitOrSingle.value == 1">
+                  <label for="numDrums">Number of drums</label>
+                  <input type="text" class="form-control" formControlName="numDrums">
+                </div>
+
+                <div class="form-group col-12" *ngIf="kitOrSingle.value == 1">
+                  <label for="numCymbals">Number of cymbals</label>
+                  <input type="text" class="form-control" formControlName="numCymbals">
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block"
+                  (click)="selectTab(2, desirability.valid)">Next</button>
+                <button type="button" class="btn btn-primary btn-block"
+                  (click)="selectTab(0, desirability.valid)">Back</button>
+              </tab>
+
+              <tab heading="Enhancements" formGroupName="enhancements">
+                <div class="form-group col-12">
+                  <p>Has aftermarket skin(s)?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="skinsAreAftermarket">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="skinsAreAftermarket" [value]="true">Yes</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="skinsAreAftermarket" [value]="false">No</label>
+                  </div>
+                </div>
+
+                <div class="form-group col-12" *ngIf="(skinsAreAftermarket.value == true)">
+                  <label for="brandOfSkins">Brand of skin(s)</label>
+                  <input type="text" class="form-control" formControlName="brandOfSkins">
+                </div>
+
+                <div class="form-group col-12" *ngIf="(skinsAreAftermarket.value == true)">
+                  <label for="nameOfSkins">Name of skin(s)</label>
+                  <input type="text" class="form-control" formControlName="nameOfSkins">
+                </div>
+
+                <div class="form-group col-12" *ngIf="kitOrSingle.value == 1">
+                  <p>Has aftermarket cymbal(s)?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="cymbalsAreAftermarket">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="cymbalsAreAftermarket" [value]="true">Yes</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="cymbalsAreAftermarket" [value]="false">No</label>
+                  </div>
+                </div>
+
+                <div class="form-group col-12" *ngIf="(cymbalsAreAftermarket.value == true) && (kitOrSingle.value == 1)">
+                  <label for="brandOfCymbals">Brand of cymbal(s)</label>
+                  <input type="text" class="form-control" formControlName="brandOfCymbals">
+                </div>
+
+                <div class="form-group col-12" *ngIf="(cymbalsAreAftermarket.value == true) && (kitOrSingle.value == 1)">
+                  <label for="nameOfCymbals">Name of cymbal(s)</label>
+                  <input type="text" class="form-control" formControlName="nameOfCymbals">
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block"
+                (click)="selectTab(3, enhancements.valid)">Next</button>
+              <button type="button" class="btn btn-primary btn-block"
+                (click)="selectTab(1, enhancements.valid)">Back</button>
+              </tab>
+
+              <tab heading="Accessories" formGroupName="accessories">
+                <div class="form-group col-12" *ngIf="kitOrSingle.value == 1">
+                  <p>Has throne?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="hasThrone">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="hasThrone" [value]="true">Yes</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="hasThrone" [value]="false">No</label>
+                  </div>
+                </div>
+
+                <div class="form-group col-12" *ngIf="(hasThrone.value == true) && (kitOrSingle.value == 1)">
+                  <label for="brandOfThrone">Brand of throne</label>
+                  <input type="text" class="form-control" formControlName="brandOfThrone">
+                </div>
+
+                <div class="form-group col-12" *ngIf="(hasThrone.value == true) && (kitOrSingle.value == 1)">
+                  <label for="nameOfThrone">Name of throne</label>
+                  <input type="text" class="form-control" formControlName="nameOfThrone">
+                </div>
+
+                <div class="form-group col-12" *ngIf="kitOrSingle.value == 1">
+                  <p>Has bass pllow?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="hasBassPillow">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="hasBassPillow" [value]="true">Yes</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="hasBassPillow" [value]="false">No</label>
+                  </div>
+                </div>
+
+                <div class="form-group col-12" *ngIf="(hasBassPillow.value == true) && (kitOrSingle.value == 1)">
+                  <label for="brandOfBassPillow">Brand of bass pillow</label>
+                  <input type="text" class="form-control" formControlName="brandOfBassPillow">
+                </div>
+
+                <div class="form-group col-12" *ngIf="(hasBassPillow.value == true) && (kitOrSingle.value == 1)">
+                  <label for="nameOfBassPillow">Name of bass pillow</label>
+                  <input type="text" class="form-control" formControlName="nameOfBassPillow">
+                </div>
+
+                <div class="form-group col-12" *ngIf="kitOrSingle.value != 1">
+                  <p>*No accessory fields for single drums*</p>
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block"
+                  (click)="selectTab(4, accessories.valid)">Next</button>
+                <button type="button" class="btn btn-primary btn-block"
+                  (click)="selectTab(2, accessories.valid)">Back</button>
+              </tab>
+
+              <tab heading="Images" formGroupName="images">
+                <div class="form-group col-12">
+                  <label for="image">Image</label>
+                  <div class="photo-control">
+                    <button class="mt-5" type="button">Upload</button> <br>
+                    This is under construction
+                  </div>
+                </div>
+                <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3, true)">Back</button>
+                  <button type="submit" class="btn btn-primary btn-block">Save</button>
+                  <button type="reset" class="btn btn-primary btn-block">Cancel</button>
+                </div>
+              </tab>
+
+            </tabset>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card-header">
+      <h3>Your Drum (Kit) Preview</h3>
+    </div>
+    <div class="shadow-lg p-3 bg-white">
+      <app-drum-card [drumKit]="drumKitView" hideIcons="true"></app-drum-card>
+    </div>
+  </div>
+</div>

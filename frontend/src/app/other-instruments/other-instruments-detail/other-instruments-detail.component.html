@@ -1,0 +1,94 @@
+<div class="row shadow">
+  <div class="col-sm-4 p-0">
+    <div class="card">
+      <div class="card-img-wrapper">
+        <img *ngIf="other.image" class="card-img-top" src="assets/images/drums/{{other.image}}">
+        <img *ngIf="!other.image" class="card-img-top" src="assets/images/drums/other-default.png">
+      </div>
+      <div class="card-body">
+        <h1 class="mb-0">{{other.brand}} {{other.name}}</h1>
+        <h2 class="mt-2">Made in: {{other.countryOfOrigin}}</h2>
+        <h2>Year produced: {{other.year}}</h2>
+        <hr class="mt-0 mb-2">
+        <h3 class="mb-0">Value: ${{other.value}}</h3>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-primary">Like</button>
+          <button class="btn btn-success">Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8 p-0">
+    <div class="tab-panel p-3">
+      <tabset class="member-tabset">
+        <tab heading="Overview">
+          <h1>Overview</h1>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Brand</strong>
+                <p>{{other.brand}}</p>
+              </div>
+              <div class="heading">
+                <strong>Name</strong>
+                <p>{{other.name}}</p>
+              </div>
+              <div class="heading">
+                <strong>Pieces</strong>
+                <p>{{other.model}}</p>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Year</strong>
+                <p>{{other.year}}</p>
+              </div>
+              <div class="heading">
+                <strong>Made in</strong>
+                <p>{{other.countryOfOrigin}}</p>
+              </div>
+              <div class="heading">
+                <strong>Value</strong>
+                <p>{{other.value}}</p>
+              </div>
+
+            </div>
+            <div class="col-sm-12">
+              <div class="heading">
+                <strong>Description</strong>
+                <p>{{other.description}}</p>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Desirability and Enhancements">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Is this an antique?</strong>
+                <p>{{other.isAntique}}</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Does it have a case?</strong>
+                <p>{{other.case}}</p>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Photos">
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+
+        </tab>
+        <tab heading="Contact">
+          <h1>Contact Detail</h1>
+          This should be restricted area and only registered user should be able to see seller contact details
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

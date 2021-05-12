@@ -1,0 +1,9 @@
+<button class="btn btn-primary mr-2" routerLink="/keyboards" data-toggle="tooltip" title="All Keyboards">All Keyboards</button>
+<button class="btn btn-primary mr-2" routerLink="/keyboards-digital" data-toggle="tooltip" title="Digital Keyboard">Digital Keyboards</button>
+<button class="btn btn-primary mr-2" routerLink="/keyboards-analog" data-toggle="tooltip" title="Analog keyboards">Analog Keyboards</button>
+<button class="btn btn-primary mr-2" routerLink="/keyboard-add" style="float: right">Add keyboard</button>
+<div class="row">
+  <div *ngFor="let key of keyboards" class="shadow-lg p-3 col-sm-4">
+    <app-keyboard-card [keyboard]="key"></app-keyboard-card>
+  </div>
+</div>

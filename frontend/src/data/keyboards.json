@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "digiOrAnalog": 1,
+    "brand": "Yamaha",
+    "name": "PSR-292",
+    "model": "PSR-292",
+    "numKeys": "61",
+    "description": "Multifunctional keyboard with touch sensitivity",
+    "year": 2005,
+    "countryOfOrigin": "China",
+    "value": 100,
+    "outputs": "Midi, 1/4\"",
+    "inputs": "Midi, Expression",
+    "hasSpeakers": true,
+    "batteries": "6D",
+    "image": "psr-292.png"
+  },
+  {
+    "id": 2,
+    "digiOrAnalog": 2,
+    "brand": "Hammond",
+    "name": "M3",
+    "model": "M3",
+    "numKeys": "2x61",
+    "description": "Tonewheel organ",
+    "year": 1968,
+    "countryOfOrigin": "USA",
+    "value": 300,
+    "outputs": "1/4\"",
+    "inputs": "Phono",
+    "hasSpeakers": true,
+    "batteries": "None",
+    "image": "m3.png"
+  }
+]

@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-img-wrapper">
+    <img *ngIf="pieceOfEquipment.image" class="card-img-top" src="assets/images/equipment/{{pieceOfEquipment.image}}">
+    <img *ngIf="!pieceOfEquipment.image" class="card-img-top" src="assets/images/equipment/equipment-default.png">
+    <ul class="list-inline text-center member-icons animate">
+      <li class="list-inline-item">
+        <button class="btn btn-primary" routerLink="/equipment-detail/{{pieceOfEquipment.id}}"><i class="fas fa-list"></i></button>
+      </li>
+      <li class="list-inline-item">
+        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+      </li>
+    </ul>
+  </div>
+    <div class="card-body p-2">
+      <h1 class="mb-0">{{pieceOfEquipment.brand}} {{pieceOfEquipment.name}}</h1>
+      <h3 class="mb-0">{{pieceOfEquipment.category}}</h3>
+      <h2 class="mt-2">Made in: {{pieceOfEquipment.countryOfOrigin}}</h2>
+      <h2>Year produced: {{pieceOfEquipment.year |  date:"yyyy"}}</h2>
+      <hr class="mt-0 mb-2">
+      <h3 class="mb-0">Value: ${{pieceOfEquipment.value}}</h3>
+    </div>
+</div>

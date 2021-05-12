@@ -1,0 +1,128 @@
+<div class="row mb-5">
+  <div class="col-8 shadow-lg p-0 bg-white">
+    <div class="card">
+      <div class="card-header">
+        Add New Equipment
+      </div>
+      <div class="card-body">
+        <form [formGroup]="equipmentAddForm" (ngSubmit)='onSubmit()'>
+
+          <div class="tab-panel">
+            <tabset class="member-tabset" #formTabs>
+
+              <tab heading="Basic Info" formGroupName="basicInfo">
+                <div class="form-group col-12">
+                  <p>Powered or not?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="powered">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="powered">Powered</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="powered">Non-Powered</label>
+                  </div>
+                  <div class="error-block" *ngIf="powered.invalid && nextClicked">
+                    Please indicate if this is powered or not
+                  </div>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="category">Equipment type</label>
+                  <input type="text" class="form-control" formControlName="category" [(ngModel)]="equipmentView.category">
+                  <span *ngIf="!category.valid && (category.touched || nextClicked)" class="error-block">
+                    <span *ngIf="category.errors.required" class="error-block">Please designate the equipment type</span>
+                    <span *ngIf="category.errors.minlength">Equipment type must be at least 2 char long</span>
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="brand">Brand</label>
+                  <input type="text" class="form-control" formControlName="brand" [(ngModel)]="equipmentView.brand">
+                  <span *ngIf="!brand.valid && (brand.touched || nextClicked)" class="error-block">
+                    <span *ngIf="brand.errors.required" class="error-block">Please designate the Brand</span>
+                    <span *ngIf="brand.errors.minlength">Brand must be at least 2 char long</span>
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" formControlName="name" [(ngModel)]="equipmentView.name">
+                  <span *ngIf="!name.valid && (name.touched || nextClicked)" class="error-block">
+                    <span *ngIf="name.errors.required" class="error-block">Please provide name</span>
+                    <span *ngIf="name.errors.minlength">Name must be at least 2 char long</span>
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="model">Model</label>
+                  <input model="text" class="form-control" formControlName="model" [(ngModel)]="equipmentView.model">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="description">Description</label>
+                  <input description="text" class="form-control" formControlName="description">
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1, basicInfo.valid)">Next</button>
+              </tab>
+
+              <tab heading="Desirability" formGroupName="desirability">
+                <div class="form-group col-12">
+                  <label for="year">Year</label>
+                  <input type="text" placeholder="Datepicker" class="form-control" formControlName="year" bsDatepicker [(ngModel)]="equipmentView.year" [bsConfig]="{containerClass: 'theme-dark-blue', isAnimated: true, dateInputFormat: 'YYYY', minMode: 'year'}">
+                </div>
+                <div class="form-group col-12">
+                  <label for="countryOfOrigin">Country of origin</label>
+                  <select class="form-control" formControlName="countryOfOrigin"
+                    [(ngModel)]="equipmentView.countryOfOrigin">
+                    <option value=''>--Select Country--</option>
+                    <option *ngFor="let country of countryList" value={{country.name}}>{{country.name}}</option>
+                  </select>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="value">Value</label>
+                  <input type="text" class="form-control" formControlName="value" [(ngModel)]="equipmentView.value">
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, desirability.valid)">Next</button>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(0, desirability.valid)">Back</button>
+              </tab>
+
+              <tab heading="Accessories" formGroupName="accessories">
+                <div class="form-group col-12">
+                  <label for="case">Case (short description if item has a case)</label>
+                  <input type="text" class="form-control" formControlName="case">
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3, accessories.valid)">Next</button>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1, accessories.valid)">Back</button>
+              </tab>
+
+              <tab heading="Images"  formGroupName="images">
+                <div class="form-group col-12">
+                  <label for="image">Image</label>
+                  <div class="photo-control">
+                    <button class="mt-5" type="button">Upload</button> <br>
+                    This is under construction
+                  </div>
+                </div>
+
+                <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, true)">Back</button>
+                  <button type="submit" class="btn btn-primary btn-block">Save</button>
+                  <button type="reset" class="btn btn-primary btn-block">Cancel</button>
+                </div>
+              </tab>
+
+            </tabset>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card-header">
+      <h3>Your Equipment Preview</h3>
+    </div>
+    <div class="shadow-lg p-3 bg-white">
+      <app-equipment-card [pieceOfEquipment]="equipmentView" hideIcons="true"></app-equipment-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<button class="btn btn-primary mr-2" routerLink="/pedals" data-toggle="tooltip" title="All Pedals">All Pedals</button>
+<button class="btn btn-primary mr-2" routerLink="/pedals-analog" data-toggle="tooltip" title="Analog Pedal">Analog Pedals</button>
+<button class="btn btn-primary mr-2" routerLink="/pedals-digital" data-toggle="tooltip" title="Digital pedals">Digital Pedals</button>
+<button class="btn btn-primary mr-2" routerLink="/pedal-add" style="float: right">Add Pedal</button>
+<div class="row">
+  <div *ngFor="let p of pedals" class="shadow-lg p-3 col-sm-4">
+    <app-pedal-card [pedal]="p"></app-pedal-card>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="row shadow">
+  <div class="col-sm-4 p-0">
+    <div class="card">
+      <div class="card-img-wrapper">
+        <img *ngIf="keyboard.image" class="card-img-top" src="assets/images/keyboards/{{keyboard.image}}">
+        <img *ngIf="!keyboard.image" class="card-img-top" src="assets/images/keyboards/keyboard-default.png">
+      </div>
+      <div class="card-body">
+        <h1 class="mb-0">{{keyboard.brand}} {{keyboard.name}}</h1>
+        <h2 class="mt-2">Made in: {{keyboard.countryOfOrigin}}</h2>
+        <h2>Year produced: {{keyboard.year}}</h2>
+        <hr class="mt-0 mb-2">
+        <h3 class="mb-0">Value: ${{keyboard.value}}</h3>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-primary">Like</button>
+          <button class="btn btn-success">Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8 p-0">
+    <div class="tab-panel p-3">
+      <tabset class="member-tabset">
+        <tab heading="Overview">
+          <h1>Overview</h1>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Brand</strong>
+                <p>{{keyboard.brand}}</p>
+              </div>
+              <div class="heading">
+                <strong>Name</strong>
+                <p>{{keyboard.name}}</p>
+              </div>
+              <div class="heading">
+                <strong>Model</strong>
+                <p>{{keyboard.model}}</p>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Year</strong>
+                <p>{{keyboard.year}}</p>
+              </div>
+              <div class="heading">
+                <strong>Made in</strong>
+                <p>{{keyboard.countryOfOrigin}}</p>
+              </div>
+              <div class="heading">
+                <strong>Value</strong>
+                <p>{{keyboard.value}}</p>
+              </div>
+
+            </div>
+            <div class="col-sm-12">
+              <div class="heading">
+                <strong>Description</strong>
+                <p>{{keyboard.description}}</p>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Features">
+          <h1>Other Details</h1>
+          <div class="row">
+          <div class="col-sm-6">
+            <div class="heading">
+              <strong>Inputs</strong>
+              <p>{{keyboard.inputs}}</p>
+            </div>
+            <div class="heading">
+              <strong>Outputs</strong>
+              <p>{{keyboard.outputs}}</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="heading">
+              <strong>Speakers</strong>
+              <p>{{keyboard.hasSpeakers}}</p>
+            </div>
+            <div class="heading">
+              <strong>Batteries</strong>
+              <p>{{keyboard.batteries}}</p>
+            </div>
+          </div>
+        </div>
+        </tab>
+        <tab heading="Photos">
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+
+        </tab>
+        <tab heading="Contact">
+          <h1>Contact Detail</h1>
+          This should be restricted area and only registered user should be able to see seller contact details
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

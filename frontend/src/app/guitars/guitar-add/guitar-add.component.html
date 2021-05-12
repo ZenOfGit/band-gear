@@ -1,0 +1,257 @@
+<div class="row mb-5">
+  <div class="col-8 shadow-lg p-0 bg-white">
+    <div class="card">
+      <div class="card-header">
+        Add New Guitar
+      </div>
+      <div class="card-body">
+        <form [formGroup]="guitarAddForm" (submit)='onSubmit()'>
+
+          <div class="tab-panel">
+            <tabset class="member-tabset" #formTabs>
+
+              <tab heading="Basic Info" formGroupName="basicInfo">
+                <div class="form-group col-12">
+                  <p>Electric or not?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="isElectric">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="isElectric">Electric</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="isElectric">Acoustic</label>
+                  </div>
+                </div>
+
+                <div class="form-group col-12">
+                  <p>Guitar or bass?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="typeGOrB" [(ngModel)]="guitarView.typeGOrB">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="typeGOrB" value="Guitar">Guitar</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="typeGOrB" value="Bass">Bass</label>
+                  </div>
+                  <span *ngIf="!typeGOrB.valid && (typeGOrB.touched || nextClicked)" class="error-block">
+                    <span *ngIf="typeGOrB.errors.required" class="error-block">Please designate if this is a guitar or bass</span>
+                    <span *ngIf="typeGOrB.errors.minlength">Guitar or bass field must be at least 2 char long</span>
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="brand">Brand</label>
+                  <input type="text" class="form-control" formControlName="brand" [(ngModel)]="guitarView.brand">
+                  <span *ngIf="!brand.valid && (brand.touched || nextClicked)" class="error-block">
+                    <span *ngIf="brand.errors.required" class="error-block">Please designate the brand</span>
+                    <span *ngIf="brand.errors.minlength">Brand must be at least 2 char long</span>
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" formControlName="name" [(ngModel)]="guitarView.name">
+                  <span *ngIf="!name.valid && (name.touched || nextClicked)" class="error-block">
+                    <span *ngIf="name.errors.required" class="error-block">Please provide name</span>
+                    <span *ngIf="name.errors.minlength">Name must be at least 2 char long</span>
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="numStrings">Model</label>
+                  <input type="text" class="form-control" formControlName="model">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="numStrings">Number of strings</label>
+                  <input type="text" class="form-control" formControlName="numStrings">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="formFactor">Form factor (size)</label>
+                  <input type="text" class="form-control" formControlName="formFactor">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="description">Description</label>
+                  <input type="text" class="form-control" formControlName="description" [(ngModel)]="guitarView.description">
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1, basicInfo.valid)">Next</button>
+              </tab>
+
+              <tab heading="Desirability" formGroupName="desirability">
+                <div class="form-group col-12">
+                  <label for="puConfiguration">Pickup configuration</label>
+                  <input type="text" class="form-control" formControlName="puConfiguration">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="year">Year</label>
+                  <input type="text" placeholder="Datepicker" class="form-control" formControlName="year" bsDatepicker  [(ngModel)]="guitarView.year" [bsConfig]="{containerClass: 'theme-dark-blue', isAnimated: true, dateInputFormat: 'YYYY', minMode: 'year'}">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="countryOfOrigin">Country of origin</label>
+                  <select class="form-control" formControlName="countryOfOrigin" [(ngModel)]="guitarView.countryOfOrigin">
+                    <option value=''>--Select Country--</option>
+                    <option *ngFor="let country of countryList" value={{country.name}}>{{country.name}}</option>
+                  </select>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="value">Value</label>
+                  <input type="text" class="form-control" formControlName="value" [(ngModel)]="guitarView.value">
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, desirability.valid)">Next</button>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(0, desirability.valid)">Back</button>
+              </tab>
+
+              <tab heading="Enhancements" formGroupName="enhancements">
+                <div class="form-group col-12">
+                  <p>Are pickups aftermarket?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="pUsAreAftermarket">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="pUsAreAftermarket" [value]="true">Yes</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="pUsAreAftermarket" [value]="false">No</label>
+                  </div>
+                </div>
+
+                <div class="form-group col-12" *ngIf="(pUsAreAftermarket.value == true)">
+                  <label for="brandOfPickups">Brand of pickups</label>
+                  <input type="text" class="form-control" formControlName="brandOfPickups">
+                </div>
+
+                <div class="form-group col-12" *ngIf="(pUsAreAftermarket.value == true)">
+                  <label for="nameOfPickups">Name of pickups</label>
+                  <input type="text" class="form-control" formControlName="nameOfPickups">
+                </div>
+
+                <div class="form-group col-12">
+                  <p>Are the tuners aftermarket?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="tunersAreAftermarket">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="tunersAreAftermarket" [value]="true">Yes</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="tunersAreAftermarket" [value]="false">No</label>
+                  </div>
+                </div>
+
+                <div class="form-group col-12" *ngIf="(tunersAreAftermarket.value == true)">
+                  <label for="brandOfTuners">Brand of tuners</label>
+                  <input type="text" class="form-control" formControlName="brandOfTuners">
+                </div>
+
+                <div class="form-group col-12" *ngIf="(tunersAreAftermarket.value == true)">
+                  <label for="nameOfTuners">Name of tuners</label>
+                  <input type="text" class="form-control" formControlName="nameOfTuners">
+                </div>
+
+                <div class="form-group col-12">
+                  <p>Are electronics aftermarket?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="electronicsAreAftermarket">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="electronicsAreAftermarket" [value]="true">Yes</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="electronicsAreAftermarket" [value]="false">No</label>
+                  </div>
+                </div>
+
+                <div class="form-group col-12" *ngIf="(electronicsAreAftermarket.value == true)">
+                  <label for="brandOfPots">Brand of pots</label>
+                  <input type="text" class="form-control" formControlName="brandOfPots">
+                </div>
+
+                <div class="form-group col-12" *ngIf="(electronicsAreAftermarket.value == true)">
+                  <label for="nameOfPots">Name of pots</label>
+                  <input type="text" class="form-control" formControlName="nameOfPots">
+                </div>
+
+                <div class="form-group col-12" *ngIf="(electronicsAreAftermarket.value == true)">
+                  <label for="nameOfCapacitor">Name of capacitor</label>
+                  <input type="text" class="form-control" formControlName="nameOfCapacitor">
+                </div>
+
+                <div class="form-group col-12" *ngIf="(electronicsAreAftermarket.value == true)">
+                  <label for="additionalCustomElectronics">Additional custom electronics</label>
+                  <input type="text" class="form-control" formControlName="additionalCustomElectronics">
+                </div>
+
+                <div class="form-group col-12">
+                  <p>Is the bridge aftermarket?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="bridgeIsAftermarket">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="bridgeIsAftermarket" [value]="true">Yes</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="bridgeIsAftermarket" [value]="false">No</label>
+                  </div>
+                </div>
+
+                <div class="form-group col-12" *ngIf="(bridgeIsAftermarket.value == true)">
+                  <label for="brandOfBridge">Brand of bridge</label>
+                  <input type="text" class="form-control" formControlName="brandOfBridge">
+                </div>
+
+                <div class="form-group col-12" *ngIf="(bridgeIsAftermarket.value == true)">
+                  <label for="nameOfBridge">Name of bridge</label>
+                  <input type="text" class="form-control" formControlName="nameOfBridge">
+                </div>
+
+                <div class="form-group col-12">
+                  <p>Does it have specific strings?</p>
+                  <div class="btn-group" btnRadioGroup formControlName="hasSpecificStrings">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="hasSpecificStrings" [value]="true">Yes</label>
+                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="hasSpecificStrings" [value]="false">No</label>
+                  </div>
+                </div>
+
+                <div class="form-group col-12" *ngIf="(hasSpecificStrings.value == true)">
+                  <label for="brandOfStrings">Brand of strings</label>
+                  <input type="text" class="form-control" formControlName="brandOfStrings">
+                </div>
+
+                <div class="form-group col-12" *ngIf="(hasSpecificStrings.value == true)">
+                  <label for="nameOfStrings">Name of strings</label>
+                  <input type="text" class="form-control" formControlName="nameOfStrings">
+                </div>
+
+                <div class="form-group col-12" *ngIf="(hasSpecificStrings.value == true)">
+                  <label for="nameOfStrings">Guage of strings</label>
+                  <input type="text" class="form-control" formControlName="nameOfStrings">
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3, enhancements.valid)">Next</button>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1, enhancements.valid)">Back</button>
+              </tab>
+
+              <tab heading="Accessories" formGroupName="accessories">
+                <div class="form-group col-12">
+                  <label for="case">Case Description</label>
+                  <input type="text" class="form-control" formControlName="case">
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="strap">Strap Description</label>
+                  <input type="text" class="form-control" formControlName="strap">
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(4, accessories.valid)">Next</button>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, accessories.valid)">Back</button>
+              </tab>
+
+              <tab heading="Images" formGroupName="images">
+                <div class="form-group col-12">
+                  <label for="image">Image</label>
+                  <div class="photo-control">
+                    <button class="mt-5" type="button">Upload</button> <br>
+                    This is under construction
+                  </div>
+                </div>
+                <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3, true)">Back</button>
+                  <button type="submit" class="btn btn-primary btn-block">Save</button>
+                  <button type="reset" class="btn btn-primary btn-block">Cancel</button>
+                </div>
+              </tab>
+            </tabset>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card-header">
+      <h3>Your Guitar Preview</h3>
+    </div>
+    <div class="shadow-lg p-3 bg-white">
+      <app-guitar-card [guitar]="guitarView" hideIcons="true"></app-guitar-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+[
+  {
+  "id": 1,
+  "isElectric": 2,
+  "brand": "Marine Band",
+  "name": "Harmonica",
+  "model": "365",
+  "description": "14 hole harmonica in the key of G",
+  "year": "1965",
+  "countryOfOrigin": "USA",
+  "value": 150,
+  "isAntique": true,
+  "case": "Cardboard",
+  "image": "hohner-365.png"
+  }
+]

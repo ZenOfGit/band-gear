@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Band Gear</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" [routerLinkActiveOptions]="{exact:true}"
+            routerLinkActive="active" routerLink="/">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/guitars">Guitars</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/pedals">Pedals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/keyboards">Keyboards</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/drums">Drums</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/other-instruments">Other Instruments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/equipment">Equipment</a>
+        </li>
+        <!--         <li class="nav-item">
+          <a class="nav-link" routerLink="/">Add Item</a>
+        </li> -->
+        <!--         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" routerLink="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="#">Action</a></li>
+            <li><a class="dropdown-item" routerLink="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" routerLink="#">Something else here</a></li>
+          </ul>
+        </li> -->
+        <!--         <li class="nav-item">
+          <a class="nav-link disabled" routerLink="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li> -->
+      </ul>
+      <div>
+        <ul class="nav navbar-nav">
+          <li *ngIf="!loggedIn()" class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="user/register">Register</a>
+          </li>
+          <li *ngIf="!loggedIn()" class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="user/login">Login</a>
+          </li>
+          <!--           <li *ngIf="loggedIn()" class="nav-item">
+            <a class="nav-link" (click)="onLogout()">Logout</a>
+          </li> -->
+          <div *ngIf="loggedIn()" class="dropdown mr-5" dropdown>
+            <a href='#' class="dropdown-toggle text-light" dropdownToggle (click)="false">
+              Welcome {{loggedInUser}}
+            </a>
+            <div class="dropdown-menu" *dropdownMenu>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-tachometer-alt"></i> View Dashboard</a>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-user-circle"></i> My Profile</a>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-key"></i> Change Password</a>
+              <a (click)="onLogout()" class="dropdown-item">
+                <i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-img-wrapper">
+    <img *ngIf="pedal.image" class="card-img-top" src="assets/images/pedals/{{pedal.image}}">
+    <img *ngIf="!pedal.image" class="card-img-top" src="assets/images/pedals/pedal-default.png">
+    <ul class="list-inline text-center member-icons animate">
+      <li class="list-inline-item">
+        <button class="btn btn-primary" routerLink="/pedal-detail/{{pedal.id}}"><i class="fas fa-list"></i></button>
+      </li>
+      <li class="list-inline-item">
+        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+      </li>
+    </ul>
+  </div>
+    <div class="card-body p-2">
+      <h1 class="mb-0">{{pedal.brand}} {{pedal.name}}</h1>
+      <h2 class="mt-2">Made in: {{pedal.countryOfOrigin}}</h2>
+      <h2>Year produced: {{pedal.year}}</h2>
+      <hr class="mt-0 mb-2">
+      <h3 class="mb-0">Value: ${{pedal.value}}</h3>
+    </div>
+</div>

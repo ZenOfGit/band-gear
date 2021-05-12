@@ -1,0 +1,137 @@
+<div class="row mb-5">
+  <div class="col-8 shadow-lg p-0 bg-white">
+<div class="card">
+  <div class="card-header">
+    Add New Keyboard
+  </div>
+  <div class="card-body">
+    <form [formGroup]="keyboardAddForm" (ngSubmit)='onSubmit()'>
+      <div class="tab-panel">
+        <tabset class="member-tabset" #formTabs>
+
+          <tab heading="Basic Info" formGroupName="basicInfo">
+            <div class="form-group col-12">
+              <p>Digital or analog?</p>
+              <div class="btn-group" btnRadioGroup formControlName="digiOrAnalog">
+                <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button"name="digiOrAnalog">Digital</label>
+                <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button"name="digiOrAnalog">Analog</label>
+              </div>
+              <div class="error-block" *ngIf="digiOrAnalog.invalid && nextClicked">
+                Please select digital or analog
+              </div>
+            </div>
+
+            <div class="form-group col-12">
+              <label for="brand">Brand</label>
+              <input type="text" class="form-control" formControlName="brand" [(ngModel)]="keyboardView.brand">
+              <span *ngIf="!brand.valid && (brand.touched || nextClicked)" class="error-block">
+                <span *ngIf="brand.errors.required" class="error-block">Please designate the Brand</span>
+                <span *ngIf="brand.errors.minlength">Brand must be at least 2 char long</span>
+              </span>
+            </div>
+
+            <div class="form-group col-12">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" formControlName="name" [(ngModel)]="keyboardView.name">
+              <span *ngIf="!name.valid && (name.touched || nextClicked)" class="error-block">
+                <span *ngIf="name.errors.required" class="error-block">Please provide name</span>
+                <span *ngIf="name.errors.minlength">Name must be at least 2 char long</span>
+              </span>
+            </div>
+
+            <div class="form-group col-12">
+              <label for="model">Model</label>
+              <input type="text" class="form-control" formControlName="model">
+            </div>
+
+            <div class="form-group col-12">
+              <label for="numKeys">Number of keys</label>
+              <input type="text" class="form-control" formControlName="numKeys">
+            </div>
+
+            <div class="form-group col-12">
+              <label for="description">Description</label>
+              <input type="text" class="form-control" formControlName="description">
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1, basicInfo.valid)">Next</button>
+          </tab>
+
+          <tab heading="Desirability" formGroupName="desirability">
+            <div class="form-group col-12">
+              <label for="year">Year</label>
+              <input type="text" class="form-control" formControlName="year" [(ngModel)]="keyboardView.year">
+            </div>
+
+            <div class="form-group col-12">
+              <label for="countryOfOrigin">Country of origin</label>
+              <select class="form-control" formControlName="countryOfOrigin" [(ngModel)]="keyboardView.countryOfOrigin">
+                <option value=''>--Select Country--</option>
+                <option *ngFor="let country of countryList" value={{country.name}}>{{country.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group col-12">
+              <label for="value">Value</label>
+              <input type="text" class="form-control" formControlName="value" [(ngModel)]="keyboardView.value">
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, desirability.valid)">Next</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(0, desirability.valid)">Back</button>
+          </tab>
+
+          <tab heading="Features" formGroupName="features">
+            <div class="form-group col-12">
+              <label for="outputs">Outputs</label>
+              <input type="text" class="form-control" formControlName="outputs">
+            </div>
+
+            <div class="form-group col-12">
+              <label for="inputs">Inputs</label>
+              <input type="text" class="form-control" formControlName="inputs">
+            </div>
+
+            <div class="form-group col-12">
+              <label for="hasSpeakers">Has onboard speakers?</label>
+              <input type="text" class="form-control" formControlName="hasSpeakers">
+            </div>
+
+            <div class="form-group col-12">
+              <label for="batteries">Has batteries</label>
+              <input type="text" class="form-control" formControlName="batteries">
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3, features.valid)">Next</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1, features.valid)">Back</button>
+          </tab>
+
+          <tab heading="Images" formGroupName="images">
+            <div class="form-group col-12">
+              <label for="image">Image</label>
+              <div class="photo-control">
+                <button class="mt-5" type="button">Upload</button> <br>
+                This is under construction
+              </div>
+            </div>
+            <div class="form-group col-12">
+              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, true)">Back</button>
+              <button type="submit" class="btn btn-primary btn-block">Save</button>
+              <button type="reset" class="btn btn-primary btn-block">Cancel</button>
+            </div>
+          </tab>
+
+        </tabset>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+<div class="col-4">
+  <div class="card-header">
+    <h3>Your Keyboard Preview</h3>
+  </div>
+  <div class="shadow-lg p-3 bg-white">
+    <app-keyboard-card [keyboard]="keyboardView" hideIcons="true"></app-keyboard-card>
+  </div>
+</div>
+</div>

@@ -1,0 +1,121 @@
+<div class="row shadow">
+  <div class="col-sm-4 p-0">
+    <div class="card">
+      <div class="card-img-wrapper">
+        <img *ngIf="guitar.image" class="card-img-top" src="assets/images/guitars/{{guitar.image}}">
+        <img *ngIf="!guitar.image" class="card-img-top" src="assets/images/guitars/guitar-default.png">
+      </div>
+      <div class="card-body">
+        <h1 class="mb-0">{{guitar.brand}} {{guitar.name}}</h1>
+        <h2 class="mt-2">Made in: {{guitar.countryOfOrigin}}</h2>
+        <h2>Year produced: {{guitar.year}}</h2>
+        <hr class="mt-0 mb-2">
+        <h3 class="mb-0">Value: ${{guitar.value}}</h3>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-primary">Like</button>
+          <button class="btn btn-success">Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8 p-0">
+    <div class="tab-panel p-3">
+      <tabset class="member-tabset">
+        <tab heading="Overview">
+          <h1>Overview</h1>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Brand</strong>
+                <p>{{guitar.brand}}</p>
+              </div>
+              <div class="heading">
+                <strong>Name</strong>
+                <p>{{guitar.name}}<span *ngIf="guitar.isElectric == 1"> (Electric)</span></p>
+              </div>
+              <div class="heading">
+                <strong>Form Factor</strong>
+                <p>{{guitar.formFactor}} ({{guitar.numStrings}} String {{guitar.typeGOrB}})</p>
+              </div>
+              <div class="heading" *ngIf="!guitar.isElectric">
+                <strong>Pickup Configuration</strong>
+                <p>{{guitar.puConfiguration}}</p>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Year</strong>
+                <p>{{guitar.year}}</p>
+              </div>
+              <div class="heading">
+                <strong>Made in</strong>
+                <p>{{guitar.countryOfOrigin}}</p>
+              </div>
+              <div class="heading">
+                <strong>Value</strong>
+                <p>${{guitar.value}}</p>
+              </div>
+
+            </div>
+            <div class="col-sm-12">
+              <div class="heading">
+                <strong>Description</strong>
+                <p>{{guitar.description}}</p>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Enhancements and Accessories">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="heading" *ngIf="!guitar.isElectric">
+                <strong>Pickups</strong>
+                <p>{{guitar.nameOfPickups}}<span *ngIf="!guitar.pickupsAreAftermarket"> by {{guitar.brandOfPickups}}</span></p>
+              </div>
+              <div class="heading" *ngIf="guitar.electronicsAreAftermarket">
+                <strong>Electronics</strong>
+                <p *ngIf="guitar.nameOfPots != 'Original'">Pots: {{guitar.nameOfPots}} by {{guitar.brandOfTuners}}</p>
+                <p *ngIf="guitar.nameOfCapacitor != 'Original'">Capacitor: {{guitar.nameOfCapacitor}}</p>
+                <p *ngIf="guitar.additionalCustomElectronics != 'None'">Other Electronics: {{guitar.additionalCustomElectronics}}</p>
+              </div>
+              <div class="heading">
+                <strong>Tuners</strong>
+                <p>{{guitar.nameOfTuners}}<span *ngIf="guitar.tunersAreAftermarket"> by {{guitar.brandOfTuners}}</span></p>
+              </div>
+              <div class="heading" *ngIf="guitar.case != 'none'">
+                <strong>Case</strong>
+                <p>{{guitar.case}}</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="heading" *ngIf="guitar.bridgeIsAftermarket">
+                <strong>Bridge</strong>
+                <p>{{guitar.nameOfBridge}} by {{guitar.brandOfBridge}}</p>
+              </div>
+              <div class="heading">
+                <strong>Strings</strong>
+                <p>{{guitar.nameOfStrings}}<span *ngIf="guitar.hasSpecificStrings"> by {{guitar.brandOfStrings}}</span></p>
+                <p *ngIf="guitar.guageOfStrings != 'Unknown'">Guage: {{guitar.guageOfStrings}}</p>
+              </div>
+              <div class="heading" *ngIf="guitar.strap == 'none'">
+                <strong>Strap</strong>
+                <p>{{guitar.strap}}</p>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Photos">
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+
+        </tab>
+        <tab heading="Contact">
+          <h1>Contact Detail</h1>
+          This should be restricted area and only registered user should be able to see seller contact details
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<button class="btn btn-primary mr-2" routerLink="/drums" data-toggle="tooltip" title="All Drums">All Drums</button>
+<button class="btn btn-primary mr-2" routerLink="/drums-kits" data-toggle="tooltip" title="Drum Kits">Drum Kits</button>
+<button class="btn btn-primary mr-2" routerLink="/drums-single" data-toggle="tooltip" title="Single Drums">Single</button>
+<button class="btn btn-primary mr-2" routerLink="/drum-add" style="float: right">Add Drum (or Kit)</button>
+<div class="row">
+  <div *ngFor="let drm of drumKits" class="shadow-lg p-3 col-sm-4">
+    <app-drum-card [drumKit]="drm"></app-drum-card>
+  </div>
+</div>

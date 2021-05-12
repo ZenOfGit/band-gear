@@ -1,0 +1,20 @@
+<!-- <button class="btn btn-primary mr-2" routerLink="/equipment" data-toggle="tooltip" title="All Equipment">All Equipment</button>
+<button class="btn btn-primary mr-2" routerLink="/equipment-add" style="float: right">Add Equipment</button>
+<div class="row">
+  <div *ngFor="let eq of equipment" class="shadow-lg p-3 col-sm-4">
+    <app-equipment-card [pieceOfEquipment]="eq"></app-equipment-card>
+  </div>
+</div> -->
+
+
+
+
+<button class="btn btn-primary mr-2" routerLink="/equipment" data-toggle="tooltip" title="All Equipment">All Equipment</button>
+<button class="btn btn-primary mr-2" routerLink="/equipment-powered" data-toggle="tooltip" title="Powered Equipment">Powered Equipment</button>
+<button class="btn btn-primary mr-2" routerLink="/equipment-unpowered" data-toggle="tooltip" title="Non-Powered Equipment">Non-Powered Equipment</button>
+<button class="btn btn-primary mr-2" routerLink="/equipment-add" style="float: right">Add Equipment</button>
+<div class="row">
+  <div *ngFor="let equip of equipment" class="shadow-lg p-3 col-sm-4">
+    <app-equipment-card [pieceOfEquipment]="equip"></app-equipment-card>
+  </div>
+</div>

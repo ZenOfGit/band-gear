@@ -1,0 +1,96 @@
+<div class="row shadow">
+  <div class="col-sm-4 p-0">
+    <div class="card">
+      <div class="card-img-wrapper">
+        <img *ngIf="pieceOfEquipment.image" class="card-img-top" src="assets/images/equipment/{{pieceOfEquipment.image}}">
+        <img *ngIf="!pieceOfEquipment.image" class="card-img-top" src="assets/images/equipment/equipment-default.png">
+      </div>
+      <div class="card-body">
+        <p>{{pieceOfEquipment.name}}</p>
+        <h1 class="mb-0">{{pieceOfEquipment.brand}} {{pieceOfEquipment.name}}</h1>
+        <h2 class="mt-2">Made in: {{pieceOfEquipment.countryOfOrigin}}</h2>
+        <h2>Year produced: {{pieceOfEquipment.year}}</h2>
+        <hr class="mt-0 mb-2">
+        <h3 class="mb-0">Value: ${{pieceOfEquipment.value}}</h3>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-primary">Like</button>
+          <button class="btn btn-success">Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8 p-0">
+    <div class="tab-panel p-3">
+      <tabset class="member-tabset">
+        <tab heading="Overview">
+          <h1>Overview</h1>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Brand</strong>
+                <p>{{pieceOfEquipment.brand}}</p>
+              </div>
+              <div class="heading">
+                <strong>Name</strong>
+                <p>{{pieceOfEquipment.name}}</p>
+              </div>
+              <div class="heading">
+                <strong>Model</strong>
+                <p>{{pieceOfEquipment.model}}</p>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Year</strong>
+                <p>{{pieceOfEquipment.year}}</p>
+              </div>
+              <div class="heading">
+                <strong>Made in</strong>
+                <p>{{pieceOfEquipment.countryOfOrigin}}</p>
+              </div>
+              <div class="heading">
+                <strong>Value</strong>
+                <p>{{pieceOfEquipment.value}}</p>
+              </div>
+
+            </div>
+            <div class="col-sm-12">
+              <div class="heading">
+                <strong>Description</strong>
+                <p>{{pieceOfEquipment.description}}</p>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Accessories">
+          <div class="row">
+          <div class="col-sm-6">
+            <div class="heading">
+              <strong>Case</strong>
+              <p>{{pieceOfEquipment.case}}</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="heading">
+              <strong>Powered by Electricity?</strong>
+              <p *ngIf="pieceOfEquipment.powered == 1">Yes - Equipment is electronic</p>
+              <p *ngIf="pieceOfEquipment.powered == 2">Not powered</p>
+            </div>
+          </div>
+        </div>
+        </tab>
+        <tab heading="Photos">
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+
+        </tab>
+        <tab heading="Contact">
+          <h1>Contact Detail</h1>
+          This should be restricted area and only registered user should be able to see seller contact details
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

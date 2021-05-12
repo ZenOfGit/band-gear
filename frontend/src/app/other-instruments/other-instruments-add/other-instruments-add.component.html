@@ -1,0 +1,122 @@
+<div class="row mb-5">
+  <div class="col-8 shadow-lg p-0 bg-white">
+<div class="card">
+  <div class="card-header">
+    Add New Instrument - Other
+  </div>
+  <div class="card-body">
+    <form [formGroup]="otherAddForm" (ngSubmit)="onSubmit()">
+      <div class="tab-panel">
+        <tabset class="member-tabset" #formTabs>
+
+            <tab heading="Basic Info" formGroupName="basicInfo">
+              <div class="form-group col-12">
+                <p>Electric or Acoustic?</p>
+                <div class="btn-group" btnRadioGroup formControlName="isElectric">
+                  <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button"name="isElectric">Electric</label>
+                  <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button"name="isElectric">Acoustic</label>
+                </div>
+                <div class="error-block" *ngIf="isElectric.invalid && nextClicked">
+                  Please select electric or acoustic
+                </div>
+              </div>
+
+
+              <div class="form-group col-12">
+                <label for="brand">Brand</label>
+                <input type="text" class="form-control" formControlName="brand" [(ngModel)]="otherView.brand">
+                <span *ngIf="!brand.valid && (brand.touched || nextClicked)" class="error-block">
+                  <span *ngIf="brand.errors.required" class="error-block">Please designate the Brand</span>
+                  <span *ngIf="brand.errors.minlength">Brand must be at least 2 char long</span>
+                </span>
+              </div>
+
+              <div class="form-group col-12">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" formControlName="name" [(ngModel)]="otherView.name">
+                <span *ngIf="!name.valid && (name.touched || nextClicked)" class="error-block">
+                  <span *ngIf="name.errors.required" class="error-block">Please provide name</span>
+                  <span *ngIf="name.errors.minlength">Name must be at least 2 char long</span>
+                </span>
+              </div>
+
+              <div class="form-group col-12">
+                <label for="model">Model</label>
+                <input type="text" class="form-control" formControlName="model">
+              </div>
+
+              <div class="form-group col-12">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" formControlName="description">
+              </div>
+              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1, basicInfo.valid)">Next</button>
+          </tab>
+
+          <tab heading="Desirability" formGroupName="desirability">
+            <div class="form-group col-12">
+              <label for="year">Year</label>
+              <input type="text" class="form-control" formControlName="year" [(ngModel)]="otherView.year">
+            </div>
+
+            <div class="form-group col-12">
+              <label for="countryOfOrigin">Country of origin</label>
+              <select class="form-control" formControlName="countryOfOrigin" [(ngModel)]="otherView.countryOfOrigin">
+                <option value=''>--Select Country--</option>
+                <option *ngFor="let country of countryList" value={{country.name}}>{{country.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group col-12">
+              <label for="value">Value</label>
+              <input type="text" class="form-control" formControlName="value" [(ngModel)]="otherView.value">
+            </div>
+
+            <div class="form-group col-12">
+              <label for="isAntique">Is it an antique?</label>
+              <input type="text" class="form-control" formControlName="isAntique">
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, desirability.valid)">Next</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(0, desirability.valid)">Back</button>
+          </tab>
+
+          <tab heading="Accessories"  formGroupName="accessories">
+            <div class="form-group col-12">
+              <label for="case">Case</label>
+              <input text="text" class="form-control" formControlName="case">
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3, accessories.valid)">Next</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1, accessories.valid)">Back</button>
+          </tab>
+
+          <tab heading="Images">
+            <div class="form-group col-12">
+              <label for="image">Image</label>
+              <div class="photo-control">
+                <button class="mt-5" type="button">Upload</button> <br>
+                This is under construction
+              </div>
+            </div>
+
+            <div class="form-group col-12">
+              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, true)">Back</button>
+              <button type="submit" class="btn btn-primary btn-block">Save</button>
+              <button type="reset" class="btn btn-primary btn-block">Cancel</button>
+            </div>
+          </tab>
+
+        </tabset>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+<div class="col-4">
+  <div class="card-header">
+    <h3>Your Other Instrument Preview</h3>
+  </div>
+  <div class="shadow-lg p-3 bg-white">
+    <app-other-instruments-card [other]="otherView" hideIcons="true"></app-other-instruments-card>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<button class="btn btn-primary mr-2" routerLink="/guitars" data-toggle="tooltip" title="All Guitars">All Guitars</button>
+<button class="btn btn-primary mr-2" routerLink="/guitars-electric" data-toggle="tooltip" title="Acoustic">Electric</button>
+<button class="btn btn-primary mr-2" routerLink="/guitars-acoustic" data-toggle="tooltip" title="Electric">Acoustic</button>
+<button class="btn btn-primary mr-2" routerLink="/guitar-add" style="float: right">Add Guitar</button>
+<div class="row">
+  <div *ngFor="let git of guitars" class="shadow-lg p-3 col-sm-4">
+    <app-guitar-card [guitar]="git"></app-guitar-card>
+  </div>
+</div>
