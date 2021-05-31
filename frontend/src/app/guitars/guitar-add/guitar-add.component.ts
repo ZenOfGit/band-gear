@@ -327,7 +327,7 @@ export class GuitarAddComponent implements OnInit {
       this.guitar.nameOfCapacitor = 'None';
       this.guitar.additionalCustomElectronics = 'None';
     }
-    if (this.isElectric.value == true || this.pUsAreAftermarket.value == false) {
+    if (this.isElectric.value == true && this.pUsAreAftermarket.value == false) {
       this.guitar.brandOfPickups = "Original";
       this.guitar.nameOfPickups = "Original";
     }
@@ -335,7 +335,7 @@ export class GuitarAddComponent implements OnInit {
       this.guitar.brandOfTuners = "Original";
       this.guitar.nameOfTuners = "Original";
     }
-    if (this.isElectric.value == true || this.electronicsAreAftermarket.value == false) {
+    if (this.isElectric.value == true && this.electronicsAreAftermarket.value == false) {
       this.guitar.brandOfPots = "Original";
       this.guitar.nameOfPots = "Original";
       this.guitar.nameOfCapacitor = "Original";
@@ -356,6 +356,7 @@ export class GuitarAddComponent implements OnInit {
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapGuitar();
+      this.fillNulls();
       this.guitarsService.addGuitar(this.guitar);
       this.alertify.success('Guitar listed successfully.');
       console.log(this.guitarAddForm);

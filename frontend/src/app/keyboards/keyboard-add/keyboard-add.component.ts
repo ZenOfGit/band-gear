@@ -1,6 +1,6 @@
 import { KeyboardsService } from './../../services/keyboards.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs/public_api';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -23,7 +23,7 @@ export class KeyboardAddComponent implements OnInit {
 
   keyboardView: IKeyboardBase = {
     id: null,
-    digiOrAnalog: null,
+    isElectric: null,
     brand: null,
     name: null,
     model: null,
@@ -51,10 +51,10 @@ export class KeyboardAddComponent implements OnInit {
   createKeyboardAddForm() {
     this.keyboardAddForm = this.fb.group({
       basicInfo: this.fb.group({
-        digiOrAnalog: [null],
+        isElectric: [null, [Validators.required]],
         numKeys: [null],
-        brand: [null],
-        name: [null],
+        brand: [null, [Validators.required]],
+        name: [null, [Validators.required]],
         model: [null],
         description: [null],
       }),
@@ -69,6 +69,7 @@ export class KeyboardAddComponent implements OnInit {
         outputs: [null],
         inputs: [null],
         hasSpeakers: [null],
+        hasBatteries: [null],
         batteries: [null],
       }),
 
@@ -96,8 +97,8 @@ export class KeyboardAddComponent implements OnInit {
   // #endregion
 
   //#region <Form Controls>
-  get digiOrAnalog() {
-    return this.basicInfo.controls.digiOrAnalog as FormControl;
+  get isElectric() {
+    return this.basicInfo.controls.isElectric as FormControl;
   }
 
   get brand() {
@@ -144,6 +145,10 @@ export class KeyboardAddComponent implements OnInit {
     return this.features.controls.hasSpeakers as FormControl;
   }
 
+  get hasBatteries() {
+    return this.features.controls.hasBatteries as FormControl;
+  }
+
   get batteries() {
     return this.features.controls.batteries as FormControl;
   }
@@ -153,7 +158,7 @@ export class KeyboardAddComponent implements OnInit {
 
   mapKeyboard(): void {
     this.keyboard.id = this.keyboardsService.newKeyboardId();
-    this.keyboard.digiOrAnalog = +this.digiOrAnalog.value;
+    this.keyboard.isElectric = +this.isElectric.value;
     this.keyboard.brand = this.brand.value;
     this.keyboard.name = this.name.value;
     this.keyboard.model = this.model.value;
@@ -165,6 +170,7 @@ export class KeyboardAddComponent implements OnInit {
     this.keyboard.outputs = this.outputs.value;
     this.keyboard.inputs = this.inputs.value;
     this.keyboard.hasSpeakers = this.hasSpeakers.value;
+    this.keyboard.hasBatteries = this.hasBatteries.value;
     this.keyboard.batteries = this.batteries.value;
     // this.drumKit.image = this.image.value;
   }
@@ -193,14 +199,38 @@ export class KeyboardAddComponent implements OnInit {
     }
   }
 
+  fillNulls() {
+    // this is where we fill fields that are hidden from users when adding certain types of drum kits
+    if (this.isElectric.value == false) {
+      this.keyboard.outputs = 'None';
+      this.keyboard.inputs = 'None';
+      this.keyboard.hasSpeakers = false;
+      this.keyboard.hasBatteries = false;
+      this.keyboard.batteries = 'None';
+    }
+    if (this.numKeys.value == '' || this.numKeys.value == null) {
+      this.keyboard.numKeys = "Unknown";
+    }
+    if (this.hasBatteries.value == false) {
+      this.keyboard.batteries = "None";
+    }
+    if (this.outputs.value == '' || this.outputs.value == null) {
+      this.keyboard.outputs = "None";
+    }
+    if (this.inputs.value == '' || this.inputs.value == null) {
+      this.keyboard.inputs = "None";
+    }
+  }
+
   onSubmit() {
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapKeyboard();
+      this.fillNulls();
       this.keyboardsService.addKeyboard(this.keyboard);
       this.alertify.success('Drum/kit listed successfully.');
       console.log(this.keyboardAddForm);
-      if (this.digiOrAnalog.value == 1) {
+      if (this.isElectric.value == 1) {
         this.router.navigate(['keyboards-digital']);
       } else {
         this.router.navigate(['keyboards-analog']);

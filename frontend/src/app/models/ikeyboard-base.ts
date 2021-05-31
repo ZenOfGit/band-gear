@@ -2,7 +2,7 @@ import { IBasicEntity } from './basic-entity';
 
 export interface IKeyboardBase extends IBasicEntity {
   id: number;
-  digiOrAnalog: number;
+  isElectric: number;
   brand: string;
   name: string;
   model: string;

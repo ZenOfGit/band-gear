@@ -2,13 +2,13 @@
   <div class="col-sm-4 p-0">
     <div class="card">
       <div class="card-img-wrapper">
-        <img *ngIf="other.image" class="card-img-top" src="assets/images/drums/{{other.image}}">
-        <img *ngIf="!other.image" class="card-img-top" src="assets/images/drums/other-default.png">
+        <img *ngIf="other.image" class="card-img-top" src="assets/images/others/{{other.image}}">
+        <img *ngIf="!other.image" class="card-img-top" src="assets/images/others/other-default.png">
       </div>
       <div class="card-body">
         <h1 class="mb-0">{{other.brand}} {{other.name}}</h1>
         <h2 class="mt-2">Made in: {{other.countryOfOrigin}}</h2>
-        <h2>Year produced: {{other.year}}</h2>
+        <h2>Year produced: {{other.year | date:'yyyy'}}</h2>
         <hr class="mt-0 mb-2">
         <h3 class="mb-0">Value: ${{other.value}}</h3>
       </div>
@@ -36,7 +36,7 @@
                 <p>{{other.name}}</p>
               </div>
               <div class="heading">
-                <strong>Pieces</strong>
+                <strong>Model</strong>
                 <p>{{other.model}}</p>
               </div>
             </div>
@@ -44,7 +44,7 @@
             <div class="col-sm-6">
               <div class="heading">
                 <strong>Year</strong>
-                <p>{{other.year}}</p>
+                <p>{{other.year | date:'yyyy'}}</p>
               </div>
               <div class="heading">
                 <strong>Made in</strong>
@@ -52,7 +52,7 @@
               </div>
               <div class="heading">
                 <strong>Value</strong>
-                <p>{{other.value}}</p>
+                <p>${{other.value}}</p>
               </div>
 
             </div>
@@ -68,13 +68,14 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="heading">
-                <strong>Is this an antique?</strong>
-                <p>{{other.isAntique}}</p>
+                <strong>Antique or modern:</strong>
+                <p *ngIf="other.isAntique">Instrument is an antique</p>
+                <p *ngIf="!other.isAntique">Modern instrument</p>
               </div>
             </div>
             <div class="col-sm-6">
               <div class="heading">
-                <strong>Does it have a case?</strong>
+                <strong>Case/description:</strong>
                 <p>{{other.case}}</p>
               </div>
             </div>

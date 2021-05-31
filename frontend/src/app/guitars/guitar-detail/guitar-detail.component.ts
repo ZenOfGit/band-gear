@@ -30,14 +30,21 @@ export class GuitarDetailComponent implements OnInit {
   ngOnInit(): void {
     this.guitarId = +this.route.snapshot.params['id'];
 
-    this.route.params.subscribe(
+    this.route.data.subscribe(
+      (data: Guitar) => {
+        this.guitar = data['gtr'];
+      }
+    );
+
+
+/*     this.route.params.subscribe(
       (params) => {
       this.guitarId = +params['id'];
       this.guitarsService.getGuitar(this.guitarId).subscribe(
         (data: Guitar) => {
         this.guitar = data;
       });
-    });
+    }); */
 
     this.galleryOptions = [
       {

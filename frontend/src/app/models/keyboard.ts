@@ -2,7 +2,7 @@ import { IKeyboardBase } from './ikeyboard-base';
 
 export class Keyboard implements IKeyboardBase {
   id: number;
-  digiOrAnalog: number;
+  isElectric: number;
   brand: string;
   name: string;
   model: string;
@@ -14,6 +14,7 @@ export class Keyboard implements IKeyboardBase {
   outputs: string;
   inputs: string;
   hasSpeakers: boolean;
+  hasBatteries: boolean;
   batteries: string;
   image?: string;
 }

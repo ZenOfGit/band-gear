@@ -8,7 +8,7 @@
       <div class="card-body">
         <h1 class="mb-0">{{drumKit.brand}} {{drumKit.name}}</h1>
         <h2 class="mt-2">Made in: {{drumKit.countryOfOrigin}}</h2>
-        <h2>Year produced: {{drumKit.year}}</h2>
+        <h2>Year produced: {{drumKit.year | date:'yyyy'}}</h2>
         <hr class="mt-0 mb-2">
         <h3 class="mb-0">Value: ${{drumKit.value}}</h3>
       </div>
@@ -33,7 +33,7 @@
               </div>
               <div class="heading">
                 <strong>Name</strong>
-                <p>{{drumKit.name}}</p><span *ngIf="!drumKit.isElectric"> (Electric)</span>
+                <p>{{drumKit.name}}<span *ngIf="!drumKit.isElectric"> (Electric)</span></p>
               </div>
               <div class="heading">
                 <strong>Model</strong>
@@ -48,7 +48,7 @@
             <div class="col-sm-6">
               <div class="heading">
                 <strong>Year</strong>
-                <p>{{drumKit.year}}</p>
+                <p>{{drumKit.year | date:'yyyy'}}</p>
               </div>
               <div class="heading">
                 <strong>Made in</strong>
@@ -56,7 +56,7 @@
               </div>
               <div class="heading">
                 <strong>Value</strong>
-                <p>{{drumKit.value}}</p>
+                <p>${{drumKit.value}}</p>
               </div>
               <div class="heading" *ngIf="drumKit.kitOrSingle == 1">
                 <strong>Number of Drums and Cymbals</strong>

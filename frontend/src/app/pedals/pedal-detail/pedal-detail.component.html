@@ -2,13 +2,13 @@
   <div class="col-sm-4 p-0">
     <div class="card">
       <div class="card-img-wrapper">
-        <img *ngIf="pedal.image" class="card-img-top" src="assets/images/drums/{{pedal.image}}">
-        <img *ngIf="!pedal.image" class="card-img-top" src="assets/images/drums/pedal-default.png">
+        <img *ngIf="pedal.image" class="card-img-top" src="assets/images/pedals/{{pedal.image}}">
+        <img *ngIf="!pedal.image" class="card-img-top" src="assets/images/pedals/pedal-default.png">
       </div>
       <div class="card-body">
         <h1 class="mb-0">{{pedal.brand}} {{pedal.name}}</h1>
         <h2 class="mt-2">Made in: {{pedal.countryOfOrigin}}</h2>
-        <h2>Year produced: {{pedal.year}}</h2>
+        <h2>Year produced: {{pedal.year | date:'yyyy'}}</h2>
         <hr class="mt-0 mb-2">
         <h3 class="mb-0">Value: ${{pedal.value}}</h3>
       </div>
@@ -33,18 +33,43 @@
               </div>
               <div class="heading">
                 <strong>Name</strong>
-                <p>{{pedal.name}}</p>
+                <p>{{pedal.name}}<span *ngIf="pedal.digiOrAnalog == 1"> (Digital)</span><span *ngIf="pedal.digiOrAnalog == 2"> (Analog)</span></p>
               </div>
               <div class="heading">
                 <strong>Model</strong>
                 <p>{{pedal.model}}</p>
               </div>
+              <div class="heading">
+                <strong>For bass/guitar/both?</strong>
+                <p>{{pedal.forBassOrGuitar}}</p>
+              </div>
+              <div class="heading">
+                <strong>Number of knobs</strong>
+                <p>{{pedal.numKnobs}}</p>
+              </div>
+              <div class="heading">
+                <strong>Number of switches</strong>
+                <p>{{pedal.numSwitches}}</p>
+              </div>
             </div>
 
             <div class="col-sm-6">
               <div class="heading">
+                <strong>True bypass?</strong>
+                <p>{{pedal.isTrueBypass}}</p>
+              </div>
+              <div class="heading">
+                <strong>Is it an experssion pedal?</strong>
+                <p *ngIf="pedal.isExpressionPedal">Yes</p>
+                <p *ngIf="!pedal.isExpressionPedal">No</p>
+              </div>
+              <div class="heading">
+                <strong>Form factor</strong>
+                <p>{{pedal.formFactor}}</p>
+              </div>
+              <div class="heading">
                 <strong>Year</strong>
-                <p>{{pedal.year}}</p>
+                <p>{{pedal.year | date:'yyyy'}}</p>
               </div>
               <div class="heading">
                 <strong>Made in</strong>
@@ -52,7 +77,7 @@
               </div>
               <div class="heading">
                 <strong>Value</strong>
-                <p>{{pedal.value}}</p>
+                <p>${{pedal.value}}</p>
               </div>
 
             </div>
@@ -64,18 +89,86 @@
             </div>
           </div>
         </tab>
+        <tab heading="Controls">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Buttons:</strong>
+                <p *ngIf="!showButtons">(none)</p>
+                <li *ngIf="pedal.buttonOnOff">On/off footswitch</li>
+                <li *ngIf="pedal.buttonEffect">Effect</li>
+                <li *ngIf="pedal.buttonUpDown">Up/down</li>
+              </div>
+              <div class="heading" *ngIf="showToggleSwitches">
+                <strong>Toggle switches:</strong>
+                <li *ngIf="pedal.toggleMode">Mode</li>
+                <li *ngIf="pedal.togglePreset">Preset</li>
+                <li *ngIf="pedal.toggleRange">Range</li>
+                <li *ngIf="pedal.toggleStage">Stage</li>
+                <li *ngIf="pedal.toggleLeftWaveShape">Left wave shape</li>
+                <li *ngIf="pedal.toggleRightWaveShape">Right wave shape</li>
+              </div>
+              <div class="heading" *ngIf="pedal.knobDoubleA">
+                <strong>Double knobs:</strong>
+                <li *ngIf="pedal.knobDoubleA">Name: {{pedal.knobDoubleAName}}</li>
+                <li *ngIf="pedal.knobDoubleA">Function A: {{pedal.knobDoubleAFunction1}}</li>
+                <li *ngIf="pedal.knobDoubleA">Function B: {{pedal.knobDoubleAFunction2}}</li>
+                <li *ngIf="pedal.knobDoubleB">Name: {{pedal.knobDoubleBName}}</li>
+                <li *ngIf="pedal.knobDoubleB">Function A: {{pedal.knobDoubleBFunction1}}</li>
+                <li *ngIf="pedal.knobDoubleB">Function B: {{pedal.knobDoubleBFunction2}}</li>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="heading" *ngIf="showKnobs">
+                <strong>Knobs:</strong>
+                <li *ngIf="pedal.knobBalance">Balance</li>
+                <li *ngIf="pedal.knobDecayRate">Decay rate</li>
+                <li *ngIf="pedal.knobDelay">Delay</li>
+                <li *ngIf="pedal.knobDepth">Depth</li>
+                <li *ngIf="pedal.knobDirectSignal">Direct (Signal)</li>
+                <li *ngIf="pedal.knobDistortion">Distortion</li>
+                <li *ngIf="pedal.knobEQ">EQ</li>
+                <li *ngIf="pedal.knobFeedRamp">Feed/Ramp</li>
+                <li *ngIf="pedal.knobFilter">Filter</li>
+                <li *ngIf="pedal.knobForm">form</li>
+                <li *ngIf="pedal.knobGain">Gain</li>
+                <li *ngIf="pedal.knobLevel">Level</li>
+                <li *ngIf="pedal.knobMix">Mix</li>
+                <li *ngIf="pedal.knobMode">Mode</li>
+                <li *ngIf="pedal.knobOctaveDown">OctaveDown</li>
+                <li *ngIf="pedal.knobOctaveUp">OctaveUp</li>
+                <li *ngIf="pedal.knobOverdrive">Overdrive</li>
+                <li *ngIf="pedal.knobPeak">Peak</li>
+                <li *ngIf="pedal.knobRate">Rate</li>
+                <li *ngIf="pedal.knobRegen">Regen</li>
+                <li *ngIf="pedal.knobResonance">Resonance</li>
+                <li *ngIf="pedal.knobSustain">Sustain</li>
+                <li *ngIf="pedal.knobTone">Tone</li>
+                <li *ngIf="pedal.knobVolume">Volume</li>
+                <li *ngIf="pedal.knobOthers !== 0">Other knobs: {{pedal.knobOthers}}</li>
+              </div>
+            </div>
+          </div>
+        </tab>
         <tab heading="Desirability and Enhancements">
           <div class="row">
             <div class="col-sm-6">
               <div class="heading">
-                <strong>Is ot for Bass or Guitar?</strong>
-                <p>{{pedal.forBassOrGuitar}}</p>
+                <strong>Is it stereo or mono?</strong>
+                <p *ngIf="pedal.isStereo">Stereo</p>
+                <p *ngIf="!pedal.isStereo">Mono</p>
+              </div>
+              <div class="heading">
+                <p *ngIf="pedal.isModded">*This pedal is <strong>modified</strong> from stock</p>
               </div>
             </div>
             <div class="col-sm-6">
-              <div class="heading">
-                <strong>Is it stereo?</strong>
-                <p>{{pedal.isStereo}}</p>
+              <div class="heading" *ngIf="pedal.hasExpressionInput == true || pedal.hasStereoInput == true || pedal.hasStereoOutput == true || pedal.hasMidiInOut == true">
+                <strong>Enhanced inputs/outputs:</strong>
+                <p *ngIf="pedal.hasExpressionInput">Expression jack</p>
+                <p *ngIf="pedal.hasStereoInput">Stereo in</p>
+                <p *ngIf="pedal.hasStereoOutput">Stereo out</p>
+                <p *ngIf="pedal.hasMidiInOut">Midi in/out</p>
               </div>
             </div>
           </div>

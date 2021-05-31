@@ -19,6 +19,10 @@ export class PedalDetailComponent implements OnInit {
   pedal = new Pedal();
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  showButtons = false;
+  showDoubleKnobs = false;
+  showKnobs = false;
+  showToggleSwitches = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,14 +33,30 @@ export class PedalDetailComponent implements OnInit {
   ngOnInit() {
     this.pedalId = +this.route.snapshot.params['id'];
 
-    this.route.params.subscribe(
+    this.route.data.subscribe(
+      (data: Pedal) => {
+        this.pedal = data['pdl'];
+        this.buttonsChecked();  //  these must happen inside the subscribe
+        this.knobsChecked();
+        this.toggleSwitchesChecked();
+      }
+    );
+
+
+/*     this.route.params.subscribe(
       (params) => {
         this.pedalId = +params['id'];
         this.pedalsService.getPedal(this.pedalId).subscribe(
           (data: Pedal) => {
             this.pedal = data;
+            console.log("here is teh data: " + data);
+            this.buttonsChecked();  //  these must happen inside the subscribe
+            this.knobsChecked();
+            this.toggleSwitchesChecked();
           });
-      });
+      }); */
+
+
 
     this.galleryOptions = [
       {
@@ -76,4 +96,61 @@ export class PedalDetailComponent implements OnInit {
       }
     ];
   }
+
+  buttonsChecked() {
+    if (this.pedal.buttonOnOff
+      || this.pedal.buttonEffect
+      || this.pedal.buttonUpDown) {
+      this.showButtons = true;
+    }
+  }
+
+  doubleKnobsChecked() {
+    if (this.pedal.knobDoubleA) {
+      this.showDoubleKnobs = true;
+    }
+  }
+
+  knobsChecked() {
+    if (this.pedal.knobBalance
+      || this.pedal.knobDecayRate
+      || this.pedal.knobDelay
+      || this.pedal.knobDepth
+      || this.pedal.knobDirectSignal
+      || this.pedal.knobDistortion
+      || this.pedal.knobEQ
+      || this.pedal.knobFeedRamp
+      || this.pedal.knobFilter
+      || this.pedal.knobForm
+      || this.pedal.knobGain
+      || this.pedal.knobLevel
+      || this.pedal.knobMix
+      || this.pedal.knobMode
+      || this.pedal.knobOctaveDown
+      || this.pedal.knobOctaveUp
+      || this.pedal.knobOverdrive
+      || this.pedal.knobPeak
+      || this.pedal.knobRate
+      || this.pedal.knobRegen
+      || this.pedal.knobResonance
+      || this.pedal.knobSustain
+      || this.pedal.knobTone
+      || this.pedal.knobVolume
+      || this.pedal.knobOthers) {
+      this.showKnobs = true;
+    }
+  }
+
+  toggleSwitchesChecked() {
+    if (this.pedal.toggleMode
+      || this.pedal.togglePreset
+      || this.pedal.toggleRange
+      || this.pedal.toggleStage
+      || this.pedal.toggleLeftWaveShape
+      || this.pedal.toggleRightWaveShape) {
+      this.showToggleSwitches = true;
+    }
+  }
 }
+
+

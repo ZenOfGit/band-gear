@@ -11,7 +11,7 @@
 
             <tab heading="Basic Info" formGroupName="basicInfo">
               <div class="form-group col-12">
-                <p>Electric or Acoustic?</p>
+                <p>Electric or acoustic?</p>
                 <div class="btn-group" btnRadioGroup formControlName="isElectric">
                   <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button"name="isElectric">Electric</label>
                   <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button"name="isElectric">Acoustic</label>
@@ -73,7 +73,11 @@
 
             <div class="form-group col-12">
               <label for="isAntique">Is it an antique?</label>
-              <input type="text" class="form-control" formControlName="isAntique">
+              <p>Is it an antique?</p>
+              <div class="btn-group" btnRadioGroup formControlName="isAntique">
+                <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="isAntique" [value]="true">Antique</label>
+                <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="isAntique" [value]="false">Modern</label>
+              </div>
             </div>
 
             <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, desirability.valid)">Next</button>

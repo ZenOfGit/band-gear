@@ -24,7 +24,7 @@ getKeyboard(id: number) {
   );
 }
 
-getAllKeyboards(digiOrAnalog?: number): Observable<Keyboard[]> {
+getAllKeyboards(isElectric?: number): Observable<Keyboard[]> {
   return this.http.get('data/keyboards.json').pipe(
     map((data) => {
       const keyboardArray: Array<Keyboard> = [];
@@ -32,10 +32,10 @@ getAllKeyboards(digiOrAnalog?: number): Observable<Keyboard[]> {
 
       if (localKeyboards) {
         for (const id in localKeyboards) {
-          if (digiOrAnalog) {
+          if (isElectric) {
             if (
               localKeyboards.hasOwnProperty(id) &&
-              localKeyboards[id].digiOrAnalog === digiOrAnalog
+              localKeyboards[id].isElectric === isElectric
             ) {
               keyboardArray.push(localKeyboards[id]);
             }
@@ -46,8 +46,8 @@ getAllKeyboards(digiOrAnalog?: number): Observable<Keyboard[]> {
       }
 
       for (const id in data) {
-        if (digiOrAnalog) {
-          if (data.hasOwnProperty(id) && data[id].digiOrAnalog === digiOrAnalog) {
+        if (isElectric) {
+          if (data.hasOwnProperty(id) && data[id].isElectric === isElectric) {
             keyboardArray.push(data[id]);
           }
         } else {

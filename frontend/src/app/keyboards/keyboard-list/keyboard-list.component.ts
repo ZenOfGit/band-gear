@@ -10,22 +10,22 @@ import { KeyboardsService } from './../../services/keyboards.service';
 })
 export class KeyboardListComponent implements OnInit {
 
-  digiOrAnalog = 0;
+  isElectric = 0;
   keyboards: Array<Keyboard>;
 
   constructor(private route: ActivatedRoute, private keyboardsService: KeyboardsService) { }
 
   ngOnInit() {
     if (this.route.snapshot.url.toString() === "keyboards") {
-      this.digiOrAnalog = 0;
+      this.isElectric = 0;
     } else if (this.route.snapshot.url.toString() === "keyboards-digital"){
-      this.digiOrAnalog = 1;
+      this.isElectric = 1;
     } else if (this.route.snapshot.url.toString() === "keyboards-analog"){
-      this.digiOrAnalog = 2;
+      this.isElectric = 2;
     }/*  else {  // we should not get to this option
-      this.digiOrAnalog = 0;
+      this.isElectric = 0;
     } */
-    this.keyboardsService.getAllKeyboards(this.digiOrAnalog).subscribe(
+    this.keyboardsService.getAllKeyboards(this.isElectric).subscribe(
       data => {
         this.keyboards = data;
         console.log(data);

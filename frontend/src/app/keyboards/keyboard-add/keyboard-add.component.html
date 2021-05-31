@@ -11,13 +11,13 @@
 
           <tab heading="Basic Info" formGroupName="basicInfo">
             <div class="form-group col-12">
-              <p>Digital or analog?</p>
-              <div class="btn-group" btnRadioGroup formControlName="digiOrAnalog">
-                <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button"name="digiOrAnalog">Digital</label>
-                <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button"name="digiOrAnalog">Analog</label>
+              <p>Electric or acoustic?</p>
+              <div class="btn-group" btnRadioGroup formControlName="isElectric">
+                <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button"name="isElectric">Electric</label>
+                <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button"name="isElectric">Acoustic</label>
               </div>
-              <div class="error-block" *ngIf="digiOrAnalog.invalid && nextClicked">
-                Please select digital or analog
+              <div class="error-block" *ngIf="isElectric.invalid && nextClicked">
+                Please select electric or acoustic
               </div>
             </div>
 
@@ -25,7 +25,7 @@
               <label for="brand">Brand</label>
               <input type="text" class="form-control" formControlName="brand" [(ngModel)]="keyboardView.brand">
               <span *ngIf="!brand.valid && (brand.touched || nextClicked)" class="error-block">
-                <span *ngIf="brand.errors.required" class="error-block">Please designate the Brand</span>
+                <span *ngIf="brand.errors.required" class="error-block">Please designate the brand</span>
                 <span *ngIf="brand.errors.minlength">Brand must be at least 2 char long</span>
               </span>
             </div>

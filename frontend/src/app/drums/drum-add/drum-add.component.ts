@@ -21,7 +21,7 @@ export class DrumAddComponent implements OnInit {
   drumAddForm: FormGroup;
   nextClicked: boolean;
 
-  //We will get these fromteh database later
+  //We will get these from the database later
   sonicTypes: Array<string> = ['Acoustic', 'Electric', 'Hybrid'];
   countryList: any; /*string[];  Array<string> = [
     'China',
@@ -319,7 +319,6 @@ export class DrumAddComponent implements OnInit {
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapDrumkit();
-      console.log(this.drumKit);
       this.fillNulls();
       this.drumsService.addDrumKit(this.drumKit);
       this.alertify.success('Drum/kit listed successfully.');

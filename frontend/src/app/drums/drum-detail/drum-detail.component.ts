@@ -32,14 +32,14 @@ export class DrumDetailComponent implements OnInit {
       (data: DrumKit) => {
         this.drumKit = data['drm'];
 
-        // the following was commented out in order to use the route resolver with teh above code
+        // the following was commented out in order to use the route resolver with the above code
 /*     this.route.params.subscribe(
       (params) => {
         this.drumKitId = +params['id'];
         this.drumsService.getDrumKit(this.drumKitId).subscribe(
           (data: DrumKit) => {
             this.drumKit = data;
-          }, error => this.router.navigate(['/'])
+          }, error => this.router.navigate(['/'])  // subscribe method provides a parameter to get error in case error occurs at API level
           ); */
       });
 

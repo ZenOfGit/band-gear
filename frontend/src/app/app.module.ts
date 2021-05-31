@@ -5,6 +5,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgModule } from '@angular/core';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { TabsModule } from "ngx-bootstrap/tabs";
@@ -44,6 +45,7 @@ import { UserRegisterComponent } from './users/user-register/user-register.compo
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
 import { DrumDetailResolverService } from './drums/drum-detail/drum-detail-resolver.service';
+import { EquipmentDetailResolverService } from './equipment/equipment-detail/equipment-detail-resolver.service';
 import { EquipmentService } from './services/equipment.service';
 import { GuitarsService } from './services/guitars.service';
 import { UsersService } from './services/users.service';
@@ -91,6 +93,7 @@ import { UsersService } from './services/users.service';
     ButtonsModule.forRoot(),
     FormsModule,
     HttpClientModule,
+    MatCheckboxModule,
     NgxGalleryModule,
     ReactiveFormsModule,
     TabsModule.forRoot()
@@ -100,6 +103,7 @@ import { UsersService } from './services/users.service';
     AuthService,
     BsDatepickerConfig,
     DrumDetailResolverService,
+    EquipmentDetailResolverService,
     EquipmentService,
     GuitarsService,
     UsersService

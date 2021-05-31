@@ -30,14 +30,20 @@ export class EquipmentDetailComponent implements OnInit {
   ngOnInit(): void {
     this.equipmentId = +this.route.snapshot.params['id'];
 
-    this.route.params.subscribe(
+    this.route.data.subscribe(
+      (data: Equipment) => {
+        this.pieceOfEquipment = data['eqp'];
+      }
+    );
+
+/*     this.route.params.subscribe(
       (params) => {
       this.equipmentId = +params['id'];
       this.equipmentService.getEquipment(this.equipmentId).subscribe(
         (data: Equipment) => {
           this.pieceOfEquipment = data;
         });
-    });
+    }); */
 
     this.galleryOptions = [
       {

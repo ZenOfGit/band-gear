@@ -28,14 +28,21 @@ export class OtherInstrumentsDetailComponent implements OnInit {
   ngOnInit(): void {
     this.otherId = +this.route.snapshot.params['id'];
 
-    this.route.params.subscribe(
+    this.route.data.subscribe(
+      (data: Other) => {
+        this.other = data['oth'];
+      }
+    );
+
+
+/*     this.route.params.subscribe(
       (params) => {
         this.otherId = +params['id'];
         this.othersService.getOther(this.otherId).subscribe(
           (data: Other) => {
             this.other = data;
           });
-      });
+      }); */
 
     this.galleryOptions = [
       {

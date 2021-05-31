@@ -1,4 +1,4 @@
-import { DrumsService } from './../../services/drums.service';
+import { OthersService } from './../../services/others.service';
 import { Injectable } from '@angular/core';
 import {
   Resolve,
@@ -7,22 +7,22 @@ import {
   RouterStateSnapshot,
   Router,
 } from '@angular/router';
-import { DrumKit } from 'src/app/models/drum-kit';
+import { Other } from 'src/app/models/other';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DrumDetailResolverService implements Resolve<DrumKit> {
-  constructor(private drumsService: DrumsService, private router: Router) {}
+export class OtherInstrumentsDetailResolverService implements Resolve<Other> {
+  constructor(private othersService: OthersService, private router: Router) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<DrumKit> | DrumKit { // return an observable of DrumKit or DrumKit data itself
-    const drumKitId = route.params['id'];
-    return this.drumsService.getDrumKit(+drumKitId).pipe(
+  ): Observable<Other> | Other { // return an observable of Other or Other data itself
+    const otherId = route.params['id'];
+    return this.othersService.getOther(+otherId).pipe(
       catchError((error) => {
         this.router.navigate(['/']); // Should be a better error page instead of home page?
         return of(null);

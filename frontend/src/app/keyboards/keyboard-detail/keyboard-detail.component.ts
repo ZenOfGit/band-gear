@@ -27,14 +27,21 @@ export class KeyboardDetailComponent implements OnInit {
 
   ngOnInit() {
     this.keyboardId = +this.route.snapshot.params['id'];
-    this.route.params.subscribe(
+
+    this.route.data.subscribe(
+      (data: Keyboard) => {
+        this.keyboard = data['kbd'];
+      }
+    );
+
+/*     this.route.params.subscribe(
       (params) => {
         this.keyboardId = +params['id'];
         this.keyboardsService.getKeyboard(this.keyboardId).subscribe(
           (data: Keyboard) => {
             this.keyboard = data;
           });
-      });
+      }); */
 
     this.galleryOptions = [
       {

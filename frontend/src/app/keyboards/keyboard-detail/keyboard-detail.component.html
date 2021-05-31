@@ -8,7 +8,7 @@
       <div class="card-body">
         <h1 class="mb-0">{{keyboard.brand}} {{keyboard.name}}</h1>
         <h2 class="mt-2">Made in: {{keyboard.countryOfOrigin}}</h2>
-        <h2>Year produced: {{keyboard.year}}</h2>
+        <h2>Year produced: {{keyboard.year | date:'yyyy'}}</h2>
         <hr class="mt-0 mb-2">
         <h3 class="mb-0">Value: ${{keyboard.value}}</h3>
       </div>
@@ -33,7 +33,7 @@
               </div>
               <div class="heading">
                 <strong>Name</strong>
-                <p>{{keyboard.name}}</p>
+                <p>{{keyboard.name}}<span *ngIf="keyboard.isElectric"> (Electric)</span></p>
               </div>
               <div class="heading">
                 <strong>Model</strong>
@@ -44,7 +44,7 @@
             <div class="col-sm-6">
               <div class="heading">
                 <strong>Year</strong>
-                <p>{{keyboard.year}}</p>
+                <p>{{keyboard.year | date:'yyyy'}}</p>
               </div>
               <div class="heading">
                 <strong>Made in</strong>
@@ -52,7 +52,7 @@
               </div>
               <div class="heading">
                 <strong>Value</strong>
-                <p>{{keyboard.value}}</p>
+                <p>${{keyboard.value}}</p>
               </div>
 
             </div>
@@ -68,24 +68,26 @@
           <h1>Other Details</h1>
           <div class="row">
           <div class="col-sm-6">
-            <div class="heading">
-              <strong>Inputs</strong>
-              <p>{{keyboard.inputs}}</p>
+            <div class="heading" *ngIf="keyboard.isElectric">
+              <strong>Speakers</strong>
+              <p *ngIf="keyboard.hasSpeakers">Equipped with onboard speakers</p>
+              <p *ngIf="!keyboard.hasSpeakers">Not equiped with speakers</p>
             </div>
-            <div class="heading">
-              <strong>Outputs</strong>
-              <p>{{keyboard.outputs}}</p>
+            <div class="heading" *ngIf="keyboard.isElectric">
+              <strong>Batteries</strong>
+              <p *ngIf="keyboard.hasBatteries">May be equipped with {{keyboard.batteries}} batteries</p>
+              <p *ngIf="!keyboard.hasBatteries">Does not take batteries</p>
             </div>
           </div>
 
           <div class="col-sm-6">
-            <div class="heading">
-              <strong>Speakers</strong>
-              <p>{{keyboard.hasSpeakers}}</p>
+            <div class="heading" *ngIf="keyboard.isElectric">
+              <strong>Inputs</strong>
+              <p>{{keyboard.inputs}}</p>
             </div>
-            <div class="heading">
-              <strong>Batteries</strong>
-              <p>{{keyboard.batteries}}</p>
+            <div class="heading" *ngIf="keyboard.isElectric">
+              <strong>Outputs</strong>
+              <p>{{keyboard.outputs}}</p>
             </div>
           </div>
         </div>

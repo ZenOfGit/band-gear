@@ -8,7 +8,7 @@
       <div class="card-body">
         <h1 class="mb-0">{{guitar.brand}} {{guitar.name}}</h1>
         <h2 class="mt-2">Made in: {{guitar.countryOfOrigin}}</h2>
-        <h2>Year produced: {{guitar.year}}</h2>
+        <h2>Year produced: {{guitar.year | date:'yyyy'}}</h2>
         <hr class="mt-0 mb-2">
         <h3 class="mb-0">Value: ${{guitar.value}}</h3>
       </div>
@@ -48,7 +48,7 @@
             <div class="col-sm-6">
               <div class="heading">
                 <strong>Year</strong>
-                <p>{{guitar.year}}</p>
+                <p>{{guitar.year | date:'yyyy'}}</p>
               </div>
               <div class="heading">
                 <strong>Made in</strong>

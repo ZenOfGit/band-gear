@@ -10,10 +10,9 @@ import { Other } from 'src/app/models/other';
 @Component({
   selector: 'app-other-instruments-add',
   templateUrl: './other-instruments-add.component.html',
-  styleUrls: ['./other-instruments-add.component.css']
+  styleUrls: ['./other-instruments-add.component.css'],
 })
 export class OtherInstrumentsAddComponent implements OnInit {
-
   @ViewChild('formTabs') formTabs: TabsetComponent;
 
   otherAddForm: FormGroup;
@@ -30,7 +29,7 @@ export class OtherInstrumentsAddComponent implements OnInit {
     description: null,
     year: null,
     countryOfOrigin: '',
-    value: null
+    value: null,
   };
 
   constructor(
@@ -40,12 +39,11 @@ export class OtherInstrumentsAddComponent implements OnInit {
     private router: Router
   ) {}
 
-
   ngOnInit(): void {
     this.createKeyboardAddForm();
-    this.othersService.getAllCountries().subscribe(data => {
+    this.othersService.getAllCountries().subscribe((data) => {
       this.countryList = data;
-    })
+    });
   }
 
   createKeyboardAddForm() {
@@ -55,27 +53,27 @@ export class OtherInstrumentsAddComponent implements OnInit {
         brand: [null],
         name: [null],
         model: [null],
-        description: [null]
+        description: [null],
       }),
 
       desirability: this.fb.group({
         year: [null],
         countryOfOrigin: [null],
         value: [null],
-        isAntique: [null]
+        isAntique: [null],
       }),
 
       accessories: this.fb.group({
-        case: [null]
+        case: [null],
       }),
 
       images: this.fb.group({
-        image: [null]
+        image: [null],
       }),
     });
   }
 
-    // #region <Getter Methods>
+  // #region <Getter Methods>
   // #region <Form Groups>
   get basicInfo() {
     return this.otherAddForm.controls.basicInfo as FormGroup;
@@ -174,10 +172,17 @@ export class OtherInstrumentsAddComponent implements OnInit {
     }
   }
 
-    onSubmit() {
+  fillNulls() {
+    if (this.case.value == '' || this.case.value == null) {
+      this.other.case = 'None';
+    }
+  }
+
+  onSubmit() {
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapOther();
+      this.fillNulls();
       this.othersService.addOther(this.other);
       this.alertify.success('Other instrument listed successfully.');
       console.log(this.otherAddForm);
@@ -187,7 +192,9 @@ export class OtherInstrumentsAddComponent implements OnInit {
         this.router.navigate(['others-acoustic']);
       }
     } else {
-      this.alertify.error('Please review the form and make sure you have provided all valid entries.');
+      this.alertify.error(
+        'Please review the form and make sure you have provided all valid entries.'
+      );
     }
   }
 }

@@ -182,10 +182,17 @@ export class EquipmentAddComponent implements OnInit {
     return true;
   }
 
+  fillNulls() {
+    if (this.case.value == '' || this.case.value == null){
+      this.equipment.case = "None";
+    }
+  }
+
   onSubmit() {
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapEquipment();
+      this.fillNulls();
       this.equipmentService.addEquipment(this.equipment);
       this.alertify.success('Form successfully submitted');
       console.log(this.equipmentAddForm);

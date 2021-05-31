@@ -24,9 +24,9 @@
               <div class="form-group col-12">
                 <p>Is it true bypass?</p>
                 <div class="btn-group" btnRadioGroup formControlName="isTrueBypass">
-                  <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button"name="isTrueBypass">True-bypass</label>
-                  <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button"name="isTrueBypass">Not true-bypass</label>
-                  <label class="btn btn-outline-primary mr-2" btnRadio=3 tabindex="0" role="button"name="isTrueBypass">True-bypass optional</label>
+                  <label class="btn btn-outline-primary mr-2" btnRadio="True-bypass" tabindex="0" role="button"name="isTrueBypass">True-bypass</label>
+                  <label class="btn btn-outline-primary mr-2" btnRadio="No - has buffer" tabindex="0" role="button"name="isTrueBypass">No (buffered)</label>
+                  <label class="btn btn-outline-primary mr-2" btnRadio="True-bypass optional" tabindex="0" role="button"name="isTrueBypass">True-bypass optional</label>
                 </div>
                 <div class="error-block" *ngIf="isTrueBypass.invalid && nextClicked">
                   Please select true-bypass status
@@ -62,11 +62,16 @@
               </div>
 
               <div class="form-group col-12">
+                <label for="numSwitches">Number of Switches</label>
+                <input type="text" class="form-control" formControlName="numSwitches">
+              </div>
+
+              <div class="form-group col-12">
                 <p>Form Factor</p>
-                <div class="btn-group" btnRadioGroup formControlName="formFactor">
-                  <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button"name="formFactor">Stomp box</label>
-                  <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button"name="formFactor">Square stomp box</label>
-                  <label class="btn btn-outline-primary mr-2" btnRadio=3 tabindex="0" role="button"name="formFactor">Expression</label>
+                <div class="btn-group" btnRadioGroup formControlName="formFactor"  [(ngModel)]="pedal.formFactor">
+                  <label class="btn btn-outline-primary mr-2" btnRadio="Stomp box" tabindex="0" role="button"name="formFactor">Stomp box</label>
+                  <label class="btn btn-outline-primary mr-2" btnRadio="Square stomp box" tabindex="0" role="button"name="formFactor" value="Square stomp box">Square stomp box</label>
+                  <label class="btn btn-outline-primary mr-2" btnRadio="Expression" tabindex="0" role="button"name="formFactor" value="Expression">Expression</label>
                 </div>
               </div>
 
@@ -78,10 +83,80 @@
             <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1, basicInfo.valid)">Next</button>
           </tab>
 
+          <tab heading="Controls" formGroupName="controls">
+            <div class="row">
+            <div class="form-group col-6">
+              <p>Knobs</p>
+                <mat-checkbox color="primary" formControlName="knobBalance">Balance</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobDecayRate">Decay Rate</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobDelay">Delay</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobDepth">Depth</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobDirectSignal">DirectSignal</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobDistortion">Distortion</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobEQ">EQ</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobFeedRamp">FeedRamp</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobFilter">Filter</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobForm">Form</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobGain">Gain</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobLevel">Level</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobMix">Mix</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobMode">Mode</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobOctaveDown">OctaveDown</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobOctaveUp">OctaveUp</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobOverdrive">Overdrive</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobPeak">Peak</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobRate">Rate</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobRegen">Regen</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobResonance">Resonance</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobSustain">Sustain</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobTone">Tone</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="knobVolume">Volume</mat-checkbox><br />
+            </div>
+
+            <div class="form-group col-6">
+              <p>Buttons</p>
+                <mat-checkbox color="primary" formControlName="buttonOnOff">On/off</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="buttonEffect">Effect</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="buttonUpDown">Up/Down</mat-checkbox><br />
+                <br />
+              <p>Toggle Switches</p>
+                <mat-checkbox color="primary" formControlName="toggleMode">Mode</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="togglePreset">Preset</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="toggleRange">Range</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="toggleStage">Range</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="toggleLeftWaveShape">Left Wave Shape</mat-checkbox><br />
+                <mat-checkbox color="primary" formControlName="toggleRightWaveShape">Right Wave Shape</mat-checkbox><br />
+                <br />
+              <p>Double Knobs</p>
+              <mat-checkbox color="primary" formControlName="knobDoubleA">Check for first double knob</mat-checkbox><br />
+              <div *ngIf="controls.get('knobDoubleA').value"> <!-- *ngIf="!pedalAddForm.controls.knobDoubleA" -->
+                <label for="model">Double knob A name</label>
+                <input type="text" class="form-control" formControlName="knobDoubleAName">
+                <label for="model">Double knob A function 1</label>
+                <input type="text" class="form-control" formControlName="knobDoubleAFunction1">
+                <label for="model">Double knob A function 2</label>
+                <input type="text" class="form-control" formControlName="knobDoubleAFunction2">
+              </div>
+              <mat-checkbox color="primary" formControlName="knobDoubleB">Check for second double knob</mat-checkbox><br />
+              <div *ngIf="controls.get('knobDoubleB').value">
+                <label for="model">Double knob B name</label>
+                <input type="text" class="form-control" formControlName="knobDoubleBName">
+                <label for="model">Double knob B function 1</label>
+                <input type="text" class="form-control" formControlName="knobDoubleBFunction1">
+                <label for="model">Double knob B function 2</label>
+                <input type="text" class="form-control" formControlName="knobDoubleBFunction2">
+              </div>
+            </div>
+          </div>
+
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, controls.valid)">Next</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(0, controls.valid)">Back</button>
+          </tab>
+
           <tab heading="Desirability" formGroupName="desirability">
             <div class="form-group col-12">
               <label for="year">Year</label>
-              <input type="text" class="form-control" formControlName="year" [(ngModel)]="pedalView.year">
+              <input type="text" placeholder="Datepicker" class="form-control" formControlName="year" bsDatepicker [(ngModel)]="pedalView.year" [bsConfig]="{containerClass: 'theme-dark-blue', isAnimated: true, dateInputFormat: 'YYYY', minMode: 'year'}">
             </div>
 
             <div class="form-group col-12">
@@ -98,32 +173,36 @@
             </div>
 
             <div class="form-group col-12">
-              <label for="isModded">Is the pedal modded?</label>
-              <input type="text" class="form-control" formControlName="isModded">
+              <p>Is the pedal modified?</p>
+              <div class="btn-group" btnRadioGroup formControlName="isModded">
+                <label class="btn btn-outline-primary mr-2" btnRadio=true tabindex="0" role="button" name="isModded" [value]="true">Yes</label>
+                <label class="btn btn-outline-primary mr-2" btnRadio=falst tabindex="0" role="button" name="isModded" [value]="false">No</label>
+              </div>
             </div>
-            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, desirability.valid)">Next</button>
-            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(0, desirability.valid)">Back</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3, desirability.valid)">Next</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1, desirability.valid)">Back</button>
           </tab>
 
           <tab heading="Features" formGroupName="features">
             <div class="form-group col-12">
-              <label for="forBassOrGuitar">Bass or Guitar (or Both)?</label>
-              <input type="text" class="form-control" formControlName="forBassOrGuitar">
+              <p>Bass or Guitar (or Both)?</p>
+              <div class="btn-group" btnRadioGroup formControlName="forBassOrGuitar">
+                <label class="btn btn-outline-primary mr-2" btnRadio="Guitar" tabindex="0" role="button" name="forBassOrGuitar" value="Guitar">Guitar</label>
+                <label class="btn btn-outline-primary mr-2" btnRadio="Bass" tabindex="0" role="button" name="forBassOrGuitar" value="Bass">Bass</label>
+                <label class="btn btn-outline-primary mr-2" btnRadio="Both" tabindex="0" role="button" name="forBassOrGuitar" value="Both">Both</label>
+              </div>
             </div>
 
             <div class="form-group col-12">
               <p>Stereo Capability?</p>
-<!--               <div class="btn-group" btnRadioGroup formControlName="isStereo">
-                <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="isStereo" [value]="true">Mono</label>
-                <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="isStereo" [value]="false">Stereo</label>
-              </div> -->
-
-              <label for="isStereo">Stereo Capability?</label>
-              <input type="text" class="form-control" formControlName="isStereo">
+              <div class="btn-group" btnRadioGroup formControlName="isStereo">
+                <label class="btn btn-outline-primary mr-2" btnRadio=true tabindex="0" role="button" name="isStereo" [value]="true">Mono</label>
+                <label class="btn btn-outline-primary mr-2" btnRadio=false tabindex="0" role="button" name="isStereo" [value]="false">Stereo</label>
+              </div>
             </div>
 
-            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3, accessories.valid)">Next</button>
-            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1, accessories.valid)">Back</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(4, accessories.valid)">Next</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, accessories.valid)">Back</button>
           </tab>
 
           <tab heading="Accessories" formGroupName="accessories">
@@ -132,8 +211,8 @@
               <input type="text" class="form-control" formControlName="case">
             </div>
 
-            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(4, accessories.valid)">Next</button>
-            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2, accessories.valid)">Back</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(5, accessories.valid)">Next</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3, accessories.valid)">Back</button>
           </tab>
 
           <tab heading="Images" formGroupName="images">
@@ -146,7 +225,7 @@
             </div>
 
             <div class="form-group col-12">
-              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3, true)">Back</button>
+              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(4, true)">Back</button>
               <button type="submit" class="btn btn-primary btn-block">Save</button>
               <button type="reset" class="btn btn-primary btn-block">Cancel</button>
             </div>

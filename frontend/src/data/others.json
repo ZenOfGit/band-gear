@@ -6,7 +6,7 @@
   "name": "Harmonica",
   "model": "365",
   "description": "14 hole harmonica in the key of G",
-  "year": "1965",
+  "year": "1965-01-01T00:00:00.001Z",
   "countryOfOrigin": "USA",
   "value": 150,
   "isAntique": true,
