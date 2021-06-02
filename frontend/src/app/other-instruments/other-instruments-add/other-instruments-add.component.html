@@ -2,7 +2,7 @@
   <div class="col-8 shadow-lg p-0 bg-white">
 <div class="card">
   <div class="card-header">
-    Add New Instrument - Other
+  <h3>Add New Instrument - Other</h3>
   </div>
   <div class="card-body">
     <form [formGroup]="otherAddForm" (ngSubmit)="onSubmit()">
@@ -55,8 +55,7 @@
           <tab heading="Desirability" formGroupName="desirability">
             <div class="form-group col-12">
               <label for="year">Year</label>
-              <input type="text" class="form-control" formControlName="year" [(ngModel)]="otherView.year">
-            </div>
+              <input type="text" placeholder="Datepicker" class="form-control" formControlName="year" bsDatepicker [(ngModel)]="otherView.year" [bsConfig]="{containerClass: 'theme-dark-blue', isAnimated: true, dateInputFormat: 'YYYY', minMode: 'year'}">            </div>
 
             <div class="form-group col-12">
               <label for="countryOfOrigin">Country of origin</label>
@@ -72,7 +71,6 @@
             </div>
 
             <div class="form-group col-12">
-              <label for="isAntique">Is it an antique?</label>
               <p>Is it an antique?</p>
               <div class="btn-group" btnRadioGroup formControlName="isAntique">
                 <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="isAntique" [value]="true">Antique</label>

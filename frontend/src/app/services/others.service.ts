@@ -1,3 +1,4 @@
+import { apiEnv } from 'src/environments/api-env';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
@@ -12,7 +13,7 @@ export class OthersService {
   constructor(private http: HttpClient) {}
 
   getAllCountries(): Observable<string[]> {
-    return this.http.get<string[]>('http://localhost:5000/api/countries');
+    return this.http.get<string[]>(apiEnv.apiUrl);
   }
 
   getOther(id: number) {

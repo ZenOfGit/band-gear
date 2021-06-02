@@ -26,6 +26,15 @@
   color: #0069d9;
 }
 
+.dropdown {
+  border-color: #0069d9;
+  border-radius: 44px;
+  color: #0069d9;
+  line-height: 30px;
+  margin-left: 10px;
+  padding: 0 15px;
+}
+
 .ng-invalid.ng-touched {
   border-color: red;
 }

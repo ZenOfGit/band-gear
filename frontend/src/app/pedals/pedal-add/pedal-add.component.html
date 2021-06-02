@@ -2,7 +2,7 @@
   <div class="col-8 shadow-lg p-0 bg-white">
 <div class="card">
   <div class="card-header">
-    Add New Pedal
+  <h3>Add New Pedal</h3>
   </div>
   <div class="card-body">
     <form [formGroup]="pedalAddForm" (ngSubmit)="onSubmit()">
@@ -57,13 +57,17 @@
               </div>
 
               <div class="form-group col-12">
-                <label for="numKnobs">Number of Knobs</label>
-                <input type="text" class="form-control" formControlName="numKnobs">
+                <label for="numKnobs">Number of Knobs:</label>
+                <select formControlName="numKnobs" class="dropdown">
+                  <option *ngFor="let num of numbers0to10"> {{num}}</option>
+                </select>
               </div>
 
               <div class="form-group col-12">
-                <label for="numSwitches">Number of Switches</label>
-                <input type="text" class="form-control" formControlName="numSwitches">
+                <label for="numSwitches">Number of Switches:</label>
+                <select formControlName="numSwitches" class="dropdown">
+                  <option *ngFor="let num of numbers0to5">{{num}}</option>
+                </select>
               </div>
 
               <div class="form-group col-12">
