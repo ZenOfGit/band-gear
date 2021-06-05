@@ -12,7 +12,7 @@
           <tab heading="Basic Info" formGroupName="basicInfo">
             <div class="form-group col-12">
               <p>Digital or Analog?</p>
-              <div class="btn-group" btnRadioGroup formControlName="digiOrAnalog">
+              <div class="btn-group btn-round-radius" btnRadioGroup formControlName="digiOrAnalog">
                 <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button"name="digiOrAnalog">Digital</label>
                 <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button"name="digiOrAnalog">Analog</label>
               </div>
@@ -23,7 +23,7 @@
 
               <div class="form-group col-12">
                 <p>Is it true bypass?</p>
-                <div class="btn-group" btnRadioGroup formControlName="isTrueBypass">
+                <div class="btn-group btn-round-radius" btnRadioGroup formControlName="isTrueBypass">
                   <label class="btn btn-outline-primary mr-2" btnRadio="True-bypass" tabindex="0" role="button"name="isTrueBypass">True-bypass</label>
                   <label class="btn btn-outline-primary mr-2" btnRadio="No - has buffer" tabindex="0" role="button"name="isTrueBypass">No (buffered)</label>
                   <label class="btn btn-outline-primary mr-2" btnRadio="True-bypass optional" tabindex="0" role="button"name="isTrueBypass">True-bypass optional</label>
@@ -72,7 +72,7 @@
 
               <div class="form-group col-12">
                 <p>Form Factor</p>
-                <div class="btn-group" btnRadioGroup formControlName="formFactor"  [(ngModel)]="pedal.formFactor">
+                <div class="btn-group btn-round-radius" btnRadioGroup formControlName="formFactor"  [(ngModel)]="pedal.formFactor">
                   <label class="btn btn-outline-primary mr-2" btnRadio="Stomp box" tabindex="0" role="button"name="formFactor">Stomp box</label>
                   <label class="btn btn-outline-primary mr-2" btnRadio="Square stomp box" tabindex="0" role="button"name="formFactor" value="Square stomp box">Square stomp box</label>
                   <label class="btn btn-outline-primary mr-2" btnRadio="Expression" tabindex="0" role="button"name="formFactor" value="Expression">Expression</label>
@@ -178,7 +178,7 @@
 
             <div class="form-group col-12">
               <p>Is the pedal modified?</p>
-              <div class="btn-group" btnRadioGroup formControlName="isModded">
+              <div class="btn-group btn-round-radius" btnRadioGroup formControlName="isModded">
                 <label class="btn btn-outline-primary mr-2" btnRadio=true tabindex="0" role="button" name="isModded" [value]="true">Yes</label>
                 <label class="btn btn-outline-primary mr-2" btnRadio=falst tabindex="0" role="button" name="isModded" [value]="false">No</label>
               </div>
@@ -190,7 +190,7 @@
           <tab heading="Features" formGroupName="features">
             <div class="form-group col-12">
               <p>Bass or Guitar (or Both)?</p>
-              <div class="btn-group" btnRadioGroup formControlName="forBassOrGuitar">
+              <div class="btn-group btn-round-radius" btnRadioGroup formControlName="forBassOrGuitar">
                 <label class="btn btn-outline-primary mr-2" btnRadio="Guitar" tabindex="0" role="button" name="forBassOrGuitar" value="Guitar">Guitar</label>
                 <label class="btn btn-outline-primary mr-2" btnRadio="Bass" tabindex="0" role="button" name="forBassOrGuitar" value="Bass">Bass</label>
                 <label class="btn btn-outline-primary mr-2" btnRadio="Both" tabindex="0" role="button" name="forBassOrGuitar" value="Both">Both</label>
@@ -199,7 +199,7 @@
 
             <div class="form-group col-12">
               <p>Stereo Capability?</p>
-              <div class="btn-group" btnRadioGroup formControlName="isStereo">
+              <div class="btn-group btn-round-radius" btnRadioGroup formControlName="isStereo">
                 <label class="btn btn-outline-primary mr-2" btnRadio=true tabindex="0" role="button" name="isStereo" [value]="true">Mono</label>
                 <label class="btn btn-outline-primary mr-2" btnRadio=false tabindex="0" role="button" name="isStereo" [value]="false">Stereo</label>
               </div>
