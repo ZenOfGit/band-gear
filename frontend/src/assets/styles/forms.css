@@ -6,6 +6,13 @@
   color: red;
 }
 
+/* This .btn border-radius definition is needed for Firebase deployment */
+/* Without it, the .btn class inherits .25rem from bootstrap */
+/* Need to look into why the prod build process does this because it is not needed for localhost */
+.btn {
+  border-radius: 45px;
+}
+
 .btn-group > label[ng-reflect-btn-radio] {
   border-radius: 44px;
   padding: 0 15px;
