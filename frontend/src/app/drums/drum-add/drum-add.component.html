@@ -13,9 +13,9 @@
               <tab heading="Basic Info" formGroupName="basicInfo">
                 <div class="form-group col-12">
                   <p>Single drum or kit?</p>
-                  <div class="btn-group btn-round-radius" btnRadioGroup formControlName="kitOrSingle">
-                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="kitOrSingle">Kit</label>
-                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="kitOrSingle">Single</label>
+                  <div class="btn-group" btnRadioGroup formControlName="kitOrSingle">
+                    <label class="btn btn-round-radius btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="kitOrSingle">Kit</label>
+                    <label class="btn btn-round-radius btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="kitOrSingle">Single</label>
                   </div>
                   <div class="error-block" *ngIf="kitOrSingle.invalid && nextClicked">
                     Please select kit or single drum
@@ -47,9 +47,9 @@
 
                 <div class="form-group col-12">
                   <p>Electric or acoustic?</p>
-                  <div class="btn-group btn-round-radius" btnRadioGroup formControlName="isElectric">
-                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="isElectric">Acoustic</label>
-                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="isElectric">Electric</label>
+                  <div class="btn-group" btnRadioGroup formControlName="isElectric">
+                    <label class="btn btn-round-radius btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="isElectric">Acoustic</label>
+                    <label class="btn btn-round-radius btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="isElectric">Electric</label>
                   </div>
                 </div>
 
@@ -105,9 +105,9 @@
               <tab heading="Enhancements" formGroupName="enhancements">
                 <div class="form-group col-12">
                   <p>Has aftermarket skin(s)?</p>
-                  <div class="btn-group btn-round-radius" btnRadioGroup formControlName="skinsAreAftermarket">
-                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="skinsAreAftermarket" [value]="true">Yes</label>
-                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="skinsAreAftermarket" [value]="false">No</label>
+                  <div class="btn-group" btnRadioGroup formControlName="skinsAreAftermarket">
+                    <label class="btn btn-round-radius btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="skinsAreAftermarket" [value]="true">Yes</label>
+                    <label class="btn btn-round-radius btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="skinsAreAftermarket" [value]="false">No</label>
                   </div>
                 </div>
 
@@ -124,8 +124,8 @@
                 <div class="form-group col-12" *ngIf="kitOrSingle.value == 1">
                   <p>Has aftermarket cymbal(s)?</p>
                   <div class="btn-group" btnRadioGroup formControlName="cymbalsAreAftermarket">
-                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="cymbalsAreAftermarket" [value]="true">Yes</label>
-                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="cymbalsAreAftermarket" [value]="false">No</label>
+                    <label class="btn btn-round-radius btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="cymbalsAreAftermarket" [value]="true">Yes</label>
+                    <label class="btn btn-round-radius btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="cymbalsAreAftermarket" [value]="false">No</label>
                   </div>
                 </div>
 
@@ -149,8 +149,8 @@
                 <div class="form-group col-12" *ngIf="kitOrSingle.value == 1">
                   <p>Has throne?</p>
                   <div class="btn-group" btnRadioGroup formControlName="hasThrone">
-                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="hasThrone" [value]="true">Yes</label>
-                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="hasThrone" [value]="false">No</label>
+                    <label class="btn btn-round-radius btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="hasThrone" [value]="true">Yes</label>
+                    <label class="btn btn-round-radius btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="hasThrone" [value]="false">No</label>
                   </div>
                 </div>
 
@@ -167,8 +167,8 @@
                 <div class="form-group col-12" *ngIf="kitOrSingle.value == 1">
                   <p>Has bass pllow?</p>
                   <div class="btn-group" btnRadioGroup formControlName="hasBassPillow">
-                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="hasBassPillow" [value]="true">Yes</label>
-                    <label class="btn btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="hasBassPillow" [value]="false">No</label>
+                    <label class="btn btn-round-radius btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="hasBassPillow" [value]="true">Yes</label>
+                    <label class="btn btn-round-radius btn-outline-primary mr-2" btnRadio=2 tabindex="0" role="button" name="hasBassPillow" [value]="false">No</label>
                   </div>
                 </div>
 
